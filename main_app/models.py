@@ -73,7 +73,14 @@ class File(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='curr_user')
-    phone = models.IntegerField()
+    bio = models.TextField(max_length=400, null=True, blank=True)
+    phone = models.IntegerField(null=True, blank=True)
     rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], null=True)
     followers = models.ManyToManyField(User, related_name='follower')
     following = models.ManyToManyField(User)
+
+    def __str__(self):
+        return f'Profile for {self.user}'
+
+    def get_absolute_url(self):
+        return reverse('home_feed_list')

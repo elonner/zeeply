@@ -17,6 +17,8 @@
 
         <p>logged in as {{user}}</p><br>
         <a href="{% url 'skills_create' %}">Add Skill</a>
+        |
+        <a href="{% url 'profiles_create' %}">Add Profile</a>
     {% else %}
         <a href="{% url 'login' %}">Log In</a>
         |
@@ -44,7 +46,9 @@
                 <span class="icon">&#128190;</span>
                 <span>Saved</span>
             </a>
-            <a href="#">
+
+            <!-- Profile.objects.filter(user=self.request.user) -->
+            <a href="{% url 'profiles_detail' profile.id %}">
                 <span class="icon">&#128100;</span>
                 <span>Profile</span>
             </a>
