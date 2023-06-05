@@ -1,10 +1,19 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
+from django.views.generic import ListView, DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.admin.widgets import AdminDateWidget
+from .models import Skill, Post
  
 # Create your views here.
 def index(request):
     return render(request, 'base.html')
+
+class SkillCreate(LoginRequiredMixin, CreateView): # add ability for experience to be ongoing
+    model = Skill
+    fields = '__all__'
 
 def signup(request):
     error_message = ''
