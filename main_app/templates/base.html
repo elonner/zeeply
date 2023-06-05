@@ -15,7 +15,8 @@
         {% if user.is_authenticated %}
         <a href="{% url 'logout' %}">Log Out</a>
 
-        <p>logged in as {{user}}</p>
+        <p>logged in as {{user}}</p><br>
+        <a href="{% url 'skills_create' %}">Add Skill</a>
     {% else %}
         <a href="{% url 'login' %}">Log In</a>
         |
@@ -52,5 +53,7 @@
 
        
     </footer>
+    {% block content %}
+    {% endblock %}
 </body>
 </html>
