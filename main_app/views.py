@@ -5,7 +5,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormVi
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.admin.widgets import AdminDateWidget
-from .models import Skill, Post
+from .models import Skill, Post, Profile
  
 # Create your views here.
 class HomeFeedList(ListView):
@@ -46,3 +46,14 @@ def signup(request):
     form = UserCreationForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
+
+class ProfileCreate(LoginRequiredMixin, CreateView):
+    model = Profile
+    fields = ['phone', 'bio']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user # form.instance is the finch
+        return super().form_valid(form)
+    
+class ProfileDetail(LoginRequiredMixin, DetailView):
+    model = Profile
