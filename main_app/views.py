@@ -8,12 +8,25 @@ from django.contrib.admin.widgets import AdminDateWidget
 from .models import Skill, Post
  
 # Create your views here.
-def index(request):
-    return render(request, 'base.html')
+class HomeFeedList(ListView):
+    model = Post
 
 class SkillCreate(LoginRequiredMixin, CreateView): # add ability for experience to be ongoing
     model = Skill
-    fields = '__all__'
+    fields = ['skill', 'description', 'categories', 'startDate', 'endDate', 'isOngoing']
+
+    # override the form_valid method to assign the logged in user, self.request.user
+    def form_valid(self, form):
+        form.instance.user = self.request.user # form.instance is the skill
+        return super().form_valid(form)
+    
+class PostCreate(LoginRequiredMixin, CreateView):
+    model = Post
+    fields = ['title', 'description', 'header', 'contentBlock', 'skill']
+
+    def form_valid(self, form):
+        form.instance.creator = self.request.user # form.instance is the finch
+        return super().form_valid(form)
 
 def signup(request):
     error_message = ''

@@ -3,15 +3,20 @@ from django.contrib.auth.models import User
 from django.contrib.postgres.fields import ArrayField
 from django.core.validators import MaxValueValidator, MinValueValidator 
 from datetime import date
+from django.urls import reverse
+from django.utils import timezone
+import os
+
 
 # Create your models here.
 class Skill(models.Model):
     skill = models.CharField(max_length=50)
     description = models.TextField(max_length=200)
     categories = ArrayField(models.CharField(max_length=50))
-    startDate = models.DateField('start of skill experience')
-    endDate = models.DateField('end of skill experience')
-    rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
+    startDate = models.DateField()
+    endDate = models.DateField(null=True, blank=True)
+    isOngoing = models.BooleanField(default=False)
+    rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -23,29 +28,52 @@ class Skill(models.Model):
         months = int((delta%365)/12)
         return f'{years} yrs {months} months'
     
+    def get_absolute_url(self):
+        return reverse('home_feed_list')
+    
+    # FIGURE OUT LATER
+    def post(self, request, *args, **kwargs):
+        print('hi1')
+        if request.isOngoing:
+            print('hi')
+            self.endDate = timezone.now;
+        return super().post(request, *args, **kwargs)
+    
 class Post(models.Model):
-    created = models.DateField('date created')
+    created = models.DateField('date created', default=timezone.now)
     title = models.CharField(max_length=50)
     description = models.TextField(max_length=200) # need to come back when we know how much fits on a post card
     header = models.CharField(max_length=50) # change to headers
     contentBlock = models.TextField(max_length=200) # change to contentBlocks
-    rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
+    rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], null=True)
     skill = models.ForeignKey(Skill, on_delete=models.CASCADE)
     creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name='creator')
     savedBy = models.ManyToManyField(User)
 
     def __str__(self):
-        return f'Title: {self.title} ({self.user.username})'
+        return f'Title: {self.title} ({self.creator.username})'
+    
+    def get_absolute_url(self):
+        return reverse('home_feed_list')
 
 class File(models.Model):
-    file = models.FileField
+    url = models.CharField(default='.jpg')
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
 
-    # def is_photo(self):
-    #     file_name, file_extension = os.path.splitext(self.url)
-    #     return file_extension in ('.jpeg', '.JPG', '.JPEG', '.png', '.PNG', '.gif', '.ai', '.pdf', '.tiff', '.psd')
+    def is_photo(self):
+        file_name, file_extension = os.path.splitext(self.url)
+        return file_extension in ('.jpeg', '.JPG', '.JPEG', '.png', '.PNG', '.gif', '.ai', '.pdf', '.tiff', '.psd')
 
-    # def is_vid(self):
-    #     file_name, file_extension = os.path.splitext(self.url)
-    #     return file_extension in ('.mp4', '.mov', '.avi')
+    def is_vid(self):
+        file_name, file_extension = os.path.splitext(self.url)
+        return file_extension in ('.mp4', '.mov', '.avi')
 
+    def __str__(self):
+        return f"File for {self.post} - {self.url}"
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='curr_user')
+    phone = models.IntegerField()
+    rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], null=True)
+    followers = models.ManyToManyField(User, related_name='follower')
+    following = models.ManyToManyField(User)

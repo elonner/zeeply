@@ -23,10 +23,12 @@
         <a href="{% url 'signup' %}">Sign Up</a>
     {% endif %}
     </header>
+    {% block content %}
+    {% endblock %}
     <footer>
         
           
-            <a href="#">
+            <a href="{% url 'home_feed_list' %}">
                 <span class="icon">&#127968;</span>
                 <span>Home</span>
             </a>
@@ -34,7 +36,7 @@
                 <span class="icon">&#128269;</span>
                 <span>Search</span>
             </a>
-            <a href="#">
+            <a href="{% url 'posts_create' %}">
                 <span class="icon">&#10133;</span>
                 <span>Create</span>
             </a>
@@ -46,14 +48,7 @@
                 <span class="icon">&#128100;</span>
                 <span>Profile</span>
             </a>
-            <a href="{% url 'skills_create'}">
-                <span class="icon">&#127891;</span>
-                <span>Skills</span>
-            </a>
-
        
     </footer>
-    {% block content %}
-    {% endblock %}
 </body>
 </html>
