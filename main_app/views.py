@@ -6,6 +6,8 @@ from django.views.generic import ListView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.admin.widgets import AdminDateWidget
 from .models import Skill, Post, Profile
+from django.contrib.auth.models import User
+
  
 # Create your views here.
 class HomeFeedList(ListView):
@@ -55,5 +57,13 @@ class ProfileCreate(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user # form.instance is the finch
         return super().form_valid(form)
     
-class ProfileDetail(LoginRequiredMixin, DetailView):
-    model = Profile
+class UserDetail(LoginRequiredMixin, DetailView):
+    model = User
+    template_name = 'main_app/user_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        profile = Profile.objects.first()
+        context['profile'] = profile
+        return context
+
