@@ -13,13 +13,6 @@ from django.contrib.auth.models import User
 class HomeFeedList(ListView):
     model = Post
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        profile = Profile.objects.first()
-        context['profile'] = profile
-        return context
-
-#Skills - CBV - Create
 class SkillCreate(LoginRequiredMixin, CreateView): # add ability for experience to be ongoing
     model = Skill
     fields = ['skill', 'description', 'categories', 'startDate', 'endDate', 'isOngoing']
@@ -28,8 +21,11 @@ class SkillCreate(LoginRequiredMixin, CreateView): # add ability for experience 
     def form_valid(self, form):
         form.instance.user = self.request.user # form.instance is the skill
         return super().form_valid(form)
-
-# POST - CBV - CREATE
+    
+class SkillUpdate(LoginRequiredMixin, UpdateView):
+    model = Skill
+    fields = ['description', 'categories', 'startDate', 'endDate', 'isOngoing']
+    
 class PostCreate(LoginRequiredMixin, CreateView):
     model = Post
     fields = ['title', 'description', 'header', 'contentBlock', 'skill']
@@ -77,12 +73,13 @@ class ProfileCreate(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user # form.instance is the finch
         return super().form_valid(form)
     
-class ProfilesDetail(LoginRequiredMixin, DetailView):
-    model = Profile
+class UsersDetail(LoginRequiredMixin, DetailView):
+    model = User
+    template_name = 'main_app/user_detail.html'
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     profile = Profile.objects.first()
-    #     context['profile'] = profile
-    #     return context
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        profile = Profile.objects.filter(user=self.request.user.id)[0]
+        context['profile'] = profile
+        return context
 

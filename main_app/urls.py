@@ -8,10 +8,12 @@ urlpatterns = [
     path('accounts/signup/', views.signup, name='signup'),
     # PROFILE - create
     path('profiles/create/', views.ProfileCreate.as_view(), name='profiles_create'),
-    # PROFILE - detail
-    path('profiles/<int:pk>/', views.ProfilesDetail.as_view(), name='profiles_detail'),
+    # USER - detail
+    path('users/<int:pk>/', views.UsersDetail.as_view(), name='users_detail'),
     # SKILL - create
     path('skills/create/', views.SkillCreate.as_view(), name='skills_create'),
+    # SKILL - update
+    path('skills/<int:pk>/update/', views.SkillUpdate.as_view(), name='skills_update'),
     # POST - create
     path('posts/create/', views.PostCreate.as_view(), name='posts_create'),
     #POST - update
