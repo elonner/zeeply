@@ -1,66 +1,69 @@
 /* Basic CSS styling */
 
 body {
-  margin: 300px 600px 0px 600px;
   padding: 0;
   font-family: Arial, sans-serif;
   background-color: beige;
+  margin: 10px /* Add this line to remove default margin */
 }
-
-
 
 /* Styles for the main heading */
 h1 {
-    color: #333;
-    font-size: 24px;
-    margin-bottom: 20px;
-    text-align: center;
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 /* Styles for the post list container */
 ul {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 /* Styles for each post item */
 li {
-    margin-bottom: 20px;
-    margin-right: 20px;
-    background-color: #9799BA;
-    border-radius: 10px;
-    padding: 10px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  background-color: #9799BA;
+  border-radius: 10px;
+  padding: 10px;
 }
 
 /* Styles for the post title */
 li h2 {
-    font-size: 18px;
-    margin-bottom: 5px;
+  font-size: 18px;
+  margin-bottom: 5px;
 }
 
 /* Styles for the user name */
 li .username {
-    font-size: 14px;
-    color: #888;
+  font-size: 14px;
+  color: #888;
 }
 
 /* Styles for the post description */
 li .description {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 /* Styles for the container */
 
 header {
-    background-color: aquamarine; 
-    height: 50px;
-    width: 478px;   
+  background-color: aquamarine;
+  width: 100%; /* Change the width to 100% for consistency */
+  text-align: center; /* Center align the content within the header */
+  padding: 20px 0; /* Add padding to the top and bottom of the header */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px;
 }
 
 footer {
   position: fixed;
   bottom: 0;
-  width: 30%;
+  width: 100%; /* Change the width to 100% for consistency */
   background-color: #f2f2f2;
   border-top: 1px solid #ccc;
   display: flex;
@@ -68,6 +71,7 @@ footer {
   align-items: center;
   flex-direction: row; /* Display the navigation items in a row */
   height: 60px;
+  margin: 0px;
 }
 
 footer a {
@@ -85,9 +89,9 @@ footer .icon {
 }
 
 header .icon {
-    font-size: 35px;
-    margin-bottom: 5px;
-  }
+  font-size: 35px;
+  margin-bottom: 5px;
+}
 
 /* styles.css */
 
@@ -156,33 +160,55 @@ h2 {
 }
 
 #at {
-    color: black;
+  color: black;
 }
-.btn {
-    display: block;
-    margin: 0 auto;
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
 
-    padding: 10px 30px;
-    font-size: 24px;
-    cursor: pointer;
-    
-    border-radius: 7px;
-    border-bottom-left-radius: 0;
-    
-    background-color: #ffacac;
-    color: #53488d;
-    
-    
+.btn {
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  padding: 10px 30px;
+  font-size: 24px;
+  cursor: pointer;
+  border-radius: 7px;
+  border-bottom-left-radius: 0;
+  background-color: #ffacac;
+  color: #53488d;
 }
 
 #submitcenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#content {
+  height: 50px;
+  width: 100%; /* Change the width to 100% for consistency */
+  margin: 15px;
+}
+
+#bio {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+/* Media Queries */
+
+@media screen and (max-width: 767px) {
+  /* Adjust the styles for screens with a maximum width of 767px */
+  body,
+  header,
+  footer {
+    width: 100%;
+  }
+
+  #content {
+    width: 100%;
     
-   
-      
+  }
 }
