@@ -19,6 +19,7 @@ class HomeFeedList(ListView):
         context['profile'] = profile
         return context
 
+#Skills - CBV - Create
 class SkillCreate(LoginRequiredMixin, CreateView): # add ability for experience to be ongoing
     model = Skill
     fields = ['skill', 'description', 'categories', 'startDate', 'endDate', 'isOngoing']
@@ -27,7 +28,8 @@ class SkillCreate(LoginRequiredMixin, CreateView): # add ability for experience 
     def form_valid(self, form):
         form.instance.user = self.request.user # form.instance is the skill
         return super().form_valid(form)
-    
+
+# POST - CBV - CREATE
 class PostCreate(LoginRequiredMixin, CreateView):
     model = Post
     fields = ['title', 'description', 'header', 'contentBlock', 'skill']
@@ -35,6 +37,18 @@ class PostCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.creator = self.request.user # form.instance is the finch
         return super().form_valid(form)
+
+#POST - CBV - UPDATE
+class PostUpdate(LoginRequiredMixin, UpdateView):
+    model = Post
+    fields = ['title', 'description', 'header', 'contentBlock', 'skill']
+
+#POST - CBV - DELETE
+class PostDelete(LoginRequiredMixin, DeleteView):
+    model = Post
+    success_url = '/posts'
+
+
 
 def signup(request):
     error_message = ''
