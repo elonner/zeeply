@@ -7,13 +7,15 @@
     {% for post in post_list %}
         <li>
             <h2>{{ post.title }}</h2>
-            <a href="{% url 'profiles_detail' post.creator.id %}">
-                <p id="at" >@{{ post.creator }}</p>
-            </a>
-            
+            <div id="content">
+                <a href="{% url 'users_detail' post.creator.id %}">
+                    <p id="at" >@{{ post.creator }}</p>
+                </a> 
+            </div>
             <p class="description">{{ post.description }}</p>
         </li>
     {% endfor %}
 </ul>
+
 
 {% endblock %}
