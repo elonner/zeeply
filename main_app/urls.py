@@ -10,8 +10,7 @@ urlpatterns = [
     path('accounts/signup/', views.signup, name='signup'),
     # PROFILE - create
     path('profiles/create/', views.ProfileCreate.as_view(), name='profiles_create'),
-    # follow user
-    # path('finches/<int:profile_id>/assoc_toy/<int:user_id>/', views.follow_user, name='follow_user'),
+
     # USER - detail
     path('users/<int:pk>/', views.UsersDetail.as_view(), name='users_detail'),
     # SKILL - create
