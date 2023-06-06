@@ -13,6 +13,12 @@ from django.contrib.auth.models import User
 class HomeFeedList(ListView):
     model = Post
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        profile = Profile.objects.first()
+        context['profile'] = profile
+        return context
+
 class SkillCreate(LoginRequiredMixin, CreateView): # add ability for experience to be ongoing
     model = Skill
     fields = ['skill', 'description', 'categories', 'startDate', 'endDate', 'isOngoing']
@@ -57,13 +63,12 @@ class ProfileCreate(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user # form.instance is the finch
         return super().form_valid(form)
     
-class UserDetail(LoginRequiredMixin, DetailView):
-    model = User
-    template_name = 'main_app/user_detail.html'
+class ProfilesDetail(LoginRequiredMixin, DetailView):
+    model = Profile
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        profile = Profile.objects.first()
-        context['profile'] = profile
-        return context
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     profile = Profile.objects.first()
+    #     context['profile'] = profile
+    #     return context
 
