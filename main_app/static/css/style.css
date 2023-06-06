@@ -1,14 +1,66 @@
 /* Basic CSS styling */
+
 body {
-  margin: 0;
+  margin: 300px 600px 0px 600px;
   padding: 0;
   font-family: Arial, sans-serif;
+  background-color: beige;
+}
+
+
+
+/* Styles for the main heading */
+h1 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Styles for the post list container */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* Styles for each post item */
+li {
+    margin-bottom: 20px;
+    margin-right: 20px;
+    background-color: #9799BA;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+/* Styles for the post title */
+li h2 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+/* Styles for the user name */
+li .username {
+    font-size: 14px;
+    color: #888;
+}
+
+/* Styles for the post description */
+li .description {
+    font-size: 14px;
+}
+
+/* Styles for the container */
+
+header {
+    background-color: aquamarine; 
+    height: 50px;
+    width: 478px;   
 }
 
 footer {
   position: fixed;
   bottom: 0;
-  width: 100%;
+  width: 30%;
   background-color: #f2f2f2;
   border-top: 1px solid #ccc;
   display: flex;
@@ -32,12 +84,17 @@ footer .icon {
   margin-bottom: 5px;
 }
 
+header .icon {
+    font-size: 35px;
+    margin-bottom: 5px;
+  }
+
 /* styles.css */
 
 .post-block {
   margin-bottom: 20px;
   padding: 10px;
-  background-color: #f2f2f2;
+  background-color: #9799BA;
   border: 1px solid #ccc;
 }
 
@@ -98,4 +155,34 @@ h2 {
   display: block;
 }
 
+#at {
+    color: black;
+}
+.btn {
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
 
+    padding: 10px 30px;
+    font-size: 24px;
+    cursor: pointer;
+    
+    border-radius: 7px;
+    border-bottom-left-radius: 0;
+    
+    background-color: #ffacac;
+    color: #53488d;
+    
+    
+}
+
+#submitcenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+   
+      
+}

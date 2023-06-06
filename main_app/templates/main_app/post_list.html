@@ -6,7 +6,12 @@
 <ul>
     {% for post in post_list %}
         <li>
-            {{ post }}
+            <h2>{{ post.title }}</h2>
+            <a href="{% url 'users_detail' post.creator.id %}">
+                <p id="at" >@{{ post.creator }}</p>
+            </a>
+            
+            <p class="description">{{ post.description }}</p>
         </li>
     {% endfor %}
 </ul>

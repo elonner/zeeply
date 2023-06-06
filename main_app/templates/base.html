@@ -10,34 +10,37 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <title>Zeeply</title>
 </head>
-<body>
-    <header>
-        <div class="dropdown">
-          <button class="dropbtn">
-            <span class="icon">&#x1F529;;</span> <!-- Replace with your login icon class or HTML -->
-          </button>
-          <div class="dropdown-content">
-            {% if user.is_authenticated %}
-              <p>logged in as {{user}}</p>
-              <a href="{% url 'logout' %}">Log Out</a>              <a href="{% url 'skills_create' %}">Add Skill</a>
-              |
-              <a href="{% url 'profiles_create' %}">Add Profile</a>
-            
-            {% else %}
-              <a href="{% url 'login' %}">Log In</a>
-              |
-              <a href="{% url 'signup' %}">Sign Up</a>
-            {% endif %}
-          </div>
-        </div>
-      </header>
+<main>
+    <body>
+        <header>
+            <div class="dropdown">
+            <button class="dropbtn">
+                <span class="icon">&#x1F529;</span> <!-- Replace with your login icon class or HTML -->
+            </button>
+            <div class="dropdown-content">
+                {% if user.is_authenticated %}
+                <p>logged in as {{user}}</p>
+                <a href="{% url 'logout' %}">Log Out</a>              
+                <a href="{% url 'skills_create' %}">Add Skill</a>
+                
+                <a href="{% url 'profiles_create' %}">Add Profile</a>
+                
+                {% else %}
+                <a href="{% url 'login' %}">Log In</a>
+        
+                <a href="{% url 'signup' %}">Sign Up</a>
+                {% endif %}
+            </div>
+            </div>
+        </header>
+</main>
       
       
     {% block content %}
     {% endblock %}
     <footer>
         
-          
+        
             <a href="{% url 'home_feed_list' %}">
                 <span class="icon">&#127968;</span>
                 <span>Home</span>
