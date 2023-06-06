@@ -79,7 +79,8 @@ class UsersDetail(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        profile = Profile.objects.filter(user=self.request.user.id)[0]
-        context['profile'] = profile
+        profile = Profile.objects.filter(user=self.object).first()
+        if profile:
+            context['profile'] = profile
         return context
 
