@@ -13,6 +13,9 @@ from django.contrib.auth.models import User
 class HomeFeedList(ListView):
     model = Post
 
+# class FollowingPosts(LoginRequiredMixin, ListView):
+#     model = Post
+
 class SkillCreate(LoginRequiredMixin, CreateView): # add ability for experience to be ongoing
     model = Skill
     fields = ['skill', 'description', 'categories', 'startDate', 'endDate', 'isOngoing']
@@ -25,6 +28,10 @@ class SkillCreate(LoginRequiredMixin, CreateView): # add ability for experience 
 class SkillUpdate(LoginRequiredMixin, UpdateView):
     model = Skill
     fields = ['description', 'categories', 'startDate', 'endDate', 'isOngoing']
+
+class SkillDelete(LoginRequiredMixin, DeleteView):
+    model = Skill 
+    success_url = '/'
     
 class PostCreate(LoginRequiredMixin, CreateView):
     model = Post
@@ -44,7 +51,9 @@ class PostDelete(LoginRequiredMixin, DeleteView):
     model = Post
     success_url = '/posts'
 
-
+def save_post(request, post_id):
+    Post.objects.get(id=post_id).savedBy.add(request.user.id)
+    return redirect('home_feed_list')
 
 def signup(request):
     error_message = ''
@@ -72,10 +81,11 @@ class ProfileCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user # form.instance is the finch
         return super().form_valid(form)
-    
+
 class UsersDetail(LoginRequiredMixin, DetailView):
     model = User
     template_name = 'main_app/user_detail.html'
+    context_object_name = 'curr_user'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
