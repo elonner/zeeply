@@ -13,10 +13,9 @@
 <main>
     <body>
         <header>
-            
             <div class="dropdown">
                 <button class="dropbtn">
-                    <span class="icon">&#x2699;;</span> <!-- Replace with your login icon class or HTML -->
+                    <span class="icon">&#x2699;</span> <!-- Replace with your login icon class or HTML -->
                 </button>
                 <div class="dropdown-content">
                     {% if user.is_authenticated %}
@@ -31,20 +30,21 @@
             
                     <a href="{% url 'signup' %}">Sign Up</a>
                     {% endif %}
+                </div>      
+            </div>
+            <div>
+                <h2>Zeeply</h2>
+                <div>
+                    <a href="">Explore |</a><a href="">Following</a>
                 </div>
                 <div>
-                    <h2>Zeeply</h2>
-                    <div>
-                        <a href="">Explore |</a><a href="">Following</a>
-                    </div>
-                    <div>
-                        <input type="search" name="" id="">
-                    </div>
+                    <input type="search" name="" id="">
                 </div>
-                
             </div>
         </header>
+        <br><br>
 </main>
+<br><br>
       
       
     {% block content %}
