@@ -9,7 +9,7 @@ urlpatterns = [
     # PROFILE - create
     path('profiles/create/', views.ProfileCreate.as_view(), name='profiles_create'),
     # PROFILE - detail
-    path('users/<int:pk>/', views.UserDetail.as_view(), name='users_detail'),
+    path('profiles/<int:pk>/', views.ProfilesDetail.as_view(), name='profiles_detail'),
     # SKILL - create
     path('skills/create/', views.SkillCreate.as_view(), name='skills_create'),
     # POST - create
