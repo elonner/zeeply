@@ -47,8 +47,7 @@
                 <span>Saved</span>
             </a>
 
-            <!-- Profile.objects.filter(user=self.request.user) -->
-            <a href="{% url 'profiles_detail' profile.id %}">
+            <a href="{% url 'users_detail' user.id %}">
                 <span class="icon">&#128100;</span>
                 <span>Profile</span>
             </a>
