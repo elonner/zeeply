@@ -34,6 +34,18 @@ class PostCreate(LoginRequiredMixin, CreateView):
         form.instance.creator = self.request.user # form.instance is the finch
         return super().form_valid(form)
 
+#POST - CBV - UPDATE
+class PostUpdate(LoginRequiredMixin, UpdateView):
+    model = Post
+    fields = ['title', 'description', 'header', 'contentBlock', 'skill']
+
+#POST - CBV - DELETE
+class PostDelete(LoginRequiredMixin, DeleteView):
+    model = Post
+    success_url = '/posts'
+
+
+
 def signup(request):
     error_message = ''
     if request.method == 'POST':
