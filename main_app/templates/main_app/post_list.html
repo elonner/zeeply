@@ -1,37 +1,48 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>All Posts</h1>
-
+{% if is_following_page %}
+    <span>Following</span>
+    |
+    <a href="{% url 'home_feed_list' %}">Explore</a>
+{% else %}
+    <a href="{% url 'following_posts' %}">Following</a>
+    |
+    <span>Explore</span>
+{% endif %}
 <ul>
     {% for post in post_list %}
-        <li>
-            <div id="post_row1">
-                <a href="{% url 'posts_detail' post.id %}">
-                    <h2>{{ post.title }}</h2> 
-                </a>
-            </div>
-            
-            <div id="post_row2">
-                <a href="{% url 'users_detail' post.creator.id %}">
-                    <p id="at" >@{{ post.creator }}</p>
-                </a> 
-            </div>
-            <div id="post_row3">
-                <p class="description">{{ post.description }}</p>
-            </div>
-            {% if post.creator.id != user.id and user not in post.savedBy.all %}
-                <div id="post_row4">
-                    <p>add stars here</p>
-                    <a href="{% url 'posts_save' post.id %}">Save Post</a>
+        {% if post.creator.id != user.id %}
+            <li>
+                <div id="post_row1">
+                    <a href="{% url 'posts_detail' post.id %}">
+                        <h2>{{ post.title }}</h2> 
+                    </a>
                 </div>
-            {% elif user in post.savedBy.all %}
-                <div id="post_row4">
-                    <p>add stars here</p>
-                    <a href="{% url 'posts_unsave' post.id %}">Unsave Post</a>
+                
+                <div id="post_row2">
+                    <a href="{% url 'users_detail' post.creator.id %}">
+                        <p id="at" >@{{ post.creator }}</p>
+                    </a> 
                 </div>
-            {% endif %}
-        </li>
+                <div id="post_row3">
+                    <p class="description">{{ post.description }}</p>
+                </div>
+                {% if user.is_authenticated %}
+                    {% if user not in post.savedBy.all %}
+                        <div id="post_row4">
+                            <p>add stars here</p>
+                            <a href="{% url 'posts_save' post.id %}">Save Post</a>
+                        </div>
+                    {% else %}
+                        <div id="post_row4">
+                            <p>add stars here</p>
+                            <a href="{% url 'posts_unsave' post.id %}">Unsave Post</a>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            </li>
+        {% endif %}
     {% endfor %}
 </ul>
 

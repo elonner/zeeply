@@ -5,7 +5,7 @@ urlpatterns = [
     # home (for now)
     path('', views.HomeFeedList.as_view(), name="home_feed_list"),
     # home - following
-    # path('home/', views.FollowingPosts.as_view(), name="following_posts"),
+    path('following/', views.FollowingPosts.as_view(), name="following_posts"),
     # sign up
     path('accounts/signup/', views.signup, name='signup'),
     # PROFILE - create

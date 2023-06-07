@@ -1,4 +1,5 @@
 from typing import Any, Dict
+from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -15,8 +16,18 @@ class HomeFeedList(ListView):
     model = Post
 
 
-# class FollowingPosts(LoginRequiredMixin, ListView):
-#     model = Post
+class FollowingPosts(LoginRequiredMixin, ListView):
+    model = Post
+
+    def get_queryset(self):
+        curr_user_prof = Profile.objects.get(user=self.request.user)
+        following = curr_user_prof.following.all()
+        return Post.objects.filter(creator__in=following)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_following_page'] = True
+        return context
 
 class SkillCreate(LoginRequiredMixin, CreateView): # add ability for experience to be ongoing
     model = Skill
