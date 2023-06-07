@@ -55,6 +55,19 @@ class Post(models.Model):
     
     def get_absolute_url(self):
         return reverse('home_feed_list')
+    
+class Review(models.Model):
+    created = models.DateField('date created', default=timezone.now)
+    rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
+    content = models.TextField(max_length=500, null=True, blank=True) 
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    creator = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.rating} star review for {self.post}'
+
+    def get_absolute_url(self):
+        return reverse('home_feed_list')
 
 class File(models.Model):
     url = models.CharField(default='.jpg')

@@ -5,7 +5,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormVi
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.admin.widgets import AdminDateWidget
-from .models import Skill, Post, Profile
+from .models import Skill, Post, Profile, Review
 from django.contrib.auth.models import User
 
  
@@ -38,7 +38,7 @@ class PostCreate(LoginRequiredMixin, CreateView):
     fields = ['title', 'description', 'header', 'contentBlock', 'skill']
 
     def form_valid(self, form):
-        form.instance.creator = self.request.user # form.instance is the finch
+        form.instance.creator = self.request.user # form.instance is the post
         return super().form_valid(form)
     
 class PostDetail(LoginRequiredMixin, DetailView):
@@ -53,6 +53,15 @@ class PostUpdate(LoginRequiredMixin, UpdateView):
 class PostDelete(LoginRequiredMixin, DeleteView):
     model = Post
     success_url = '/'
+
+class ReviewCreate(LoginRequiredMixin, CreateView):
+    model = Review
+    fields = ['rating', 'content']
+
+    def form_valid(self, form):
+        form.instance.creator = self.request.user # form.instance is the review
+        form.instance.post = Post.objects.get(pk=self.kwargs.get('pk'))
+        return super().form_valid(form)
 
 def save_post(request, post_id):
     Post.objects.get(id=post_id).savedBy.add(request.user.id)
