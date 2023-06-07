@@ -13,6 +13,7 @@ from django.contrib.auth.models import User
 class HomeFeedList(ListView):
     model = Post
 
+
 # class FollowingPosts(LoginRequiredMixin, ListView):
 #     model = Post
 
@@ -54,17 +55,36 @@ class PostDelete(LoginRequiredMixin, DeleteView):
     model = Post
     success_url = '/'
 
+class SavedList(LoginRequiredMixin, ListView):
+    model = Post
+
+    def get_queryset(self):
+        user = self.request.user
+        return Post.objects.filter(savedBy=user)
+    
 class ReviewCreate(LoginRequiredMixin, CreateView):
     model = Review
     fields = ['rating', 'content']
 
     def form_valid(self, form):
         form.instance.creator = self.request.user # form.instance is the review
-        form.instance.post = Post.objects.get(pk=self.kwargs.get('pk'))
+        form.instance.post = Post.objects.get(pk=self.kwargs.get('post_id'))
         return super().form_valid(form)
+    
+class ReviewUpdate(LoginRequiredMixin, UpdateView):
+    model = Review
+    fields = '__all__'
+
+class ReviewDelete(LoginRequiredMixin, DeleteView):
+    model = Review
+    success_url = '/'
 
 def save_post(request, post_id):
     Post.objects.get(id=post_id).savedBy.add(request.user.id)
+    return redirect('home_feed_list')
+
+def unsave_post(request, post_id):
+    Post.objects.get(id=post_id).savedBy.remove(request.user.id)
     return redirect('home_feed_list')
 
 def signup(request):

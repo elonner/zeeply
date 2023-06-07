@@ -26,10 +26,16 @@ urlpatterns = [
     path('posts/<int:pk>/delete/', views.PostDelete.as_view(), name='posts_delete'),
     # POST - save
     path('posts/<int:post_id>/save/', views.save_post, name='posts_save'),
+    # POST - unsave
+    path('posts/<int:post_id>/unsave/', views.unsave_post, name='posts_unsave'),
+    # POST - saved posts
+    path('posts/saved/', views.SavedList.as_view(), name='saved_list'),
     # REVIEW - create
-    path('posts/<int:pk>/reviews/create/', views.ReviewCreate.as_view(), name='reviews_create'),
+    path('posts/<int:post_id>/reviews/create/', views.ReviewCreate.as_view(), name='reviews_create'),
+    # REVIEW - update
+    path('posts/<int:post_id>/reviews/<int:pk>/update/', views.ReviewUpdate.as_view(), name='reviews_update'),
     # REVIEW - delete
-    # path('posts/<int:pk>/reviews/<int:pk>/delete/', views.ReviewDelete.as_view(), name='reviews_delete'),
+    path('posts/<int:post_id>/reviews/<int:pk>/delete/', views.ReviewDelete.as_view(), name='reviews_delete'),
     # POST - detail
     path('posts/<int:pk>/', views.PostDetail.as_view(), name='posts_detail'),
 
