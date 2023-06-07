@@ -7,7 +7,7 @@
     <div>
 
     {% if user == curr_user %}
-        <a href="#">Edit</a>
+        <a href="{% url 'profiles_update' profile.id %}">Edit</a>
     {% elif user not in profile.followers.all %}
         <a href="{% url 'follow_user' curr_user.id %}">Follow</a> 
     {% else %}
