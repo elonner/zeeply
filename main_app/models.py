@@ -56,6 +56,14 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('home_feed_list')
     
+    def get_word_list(self):
+        title_list = self.title.split()
+        description_list = self.description.split()
+        header_list = self.header.split()
+        content_list = self.contentBlock.split()
+        word_list = title_list + description_list + header_list + content_list
+        return word_list
+    
 class Review(models.Model):
     created = models.DateField('date created', default=timezone.now)
     rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])

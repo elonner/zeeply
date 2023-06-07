@@ -36,6 +36,37 @@ class FollowingPosts(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['is_following_page'] = True
         return context
+    
+class SearchList(ListView):
+    model = Post
+
+    
+    def get_queryset(self):
+        if bool(self.request.GET):
+            keywords = self.request.GET.get('searchInput').split()
+            posts = Post.objects.all()
+            result_list = []
+            id_list = []
+            def get_points(elem):
+                return elem[1]
+            for p in posts:
+                word_list = p.get_word_list()
+                points = 0
+                for keyword in keywords:
+                    for word in word_list:
+                        if keyword.lower() == word.lower(): points += 1
+                if points > 0: result_list.append((p.id, points))
+            result_list.sort(key=get_points)
+            for result in result_list:
+                id_list.append(result[0])
+            return Post.objects.filter(id__in=id_list)
+        return Post.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_search_page'] = True
+        return context
+    
 
 class SkillCreate(LoginRequiredMixin, CreateView): # add ability for experience to be ongoing
     model = Skill
