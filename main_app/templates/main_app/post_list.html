@@ -5,6 +5,11 @@
     <span>Following</span>
     |
     <a href="{% url 'home_feed_list' %}">Explore</a>
+{% elif is_search_page %}
+    <form action="{% url 'search_list' %}">
+        <input type="text" name="searchInput" placeholder="Search posts" required>
+        <button style="display: none" type="submit"></button>
+    </form>
 {% else %}
     <a href="{% url 'following_posts' %}">Following</a>
     |

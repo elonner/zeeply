@@ -10,10 +10,8 @@ urlpatterns = [
     path('accounts/signup/', views.signup, name='signup'),
     # PROFILE - create
     path('profiles/create/', views.ProfileCreate.as_view(), name='profiles_create'),
-    
     #PROFILE - update
     path('profile/<int:pk>/update/', views.ProfileUpdate.as_view(), name='profiles_update'),
-
     # USER - detail
     path('users/<int:pk>/', views.UsersDetail.as_view(), name='users_detail'),
     # USER - follow
@@ -40,6 +38,8 @@ urlpatterns = [
     path('posts/<int:post_id>/unsave/', views.unsave_post, name='posts_unsave'),
     # POST - saved posts
     path('posts/saved/', views.SavedList.as_view(), name='saved_list'),
+    # POST - search
+    path('posts/search/', views.SearchList.as_view(), name='search_list'),
     # REVIEW - create
     path('posts/<int:post_id>/reviews/create/', views.ReviewCreate.as_view(), name='reviews_create'),
     # REVIEW - update
