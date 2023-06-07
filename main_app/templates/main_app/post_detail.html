@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>{{ post.title }}</h1>
+<a href="{% url 'users_detail' post.creator.id %}">
+    <h3>{{ post.creator.username }}</h3>
+</a>
+<p>{{ post.description }}</p>
+<a href="{% url 'reviews_create' post.id %}">Leave Review</a>
+
+<h3>{{ post.header }}</h3>
+<p>{{ post.content }}</p>
+
+<h2>Reviews</h2>
+{% for review in reviews %}
+    <p>{{ review }}</p>
+{% endfor %}
+
+{% endblock %}

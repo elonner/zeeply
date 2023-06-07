@@ -6,7 +6,13 @@
     <p>{{ profile.bio }}</p>
     <div>
 
-    <p><a href="#">Edit</a>  
+    {% if user == curr_user %}
+        <a href="#">Edit</a>
+    {% elif user not in profile.followers.all %}
+        <a href="{% url 'follow_user' curr_user.id %}">Follow</a> 
+    {% else %}
+        <a href="{% url 'unfollow_user' curr_user.id %}">Unfollow</a>
+    {% endif %}
 </div>
 <br>
 <ul>
@@ -16,11 +22,12 @@
                 <h2>{{ post.title }}</h2>
                 <p class="description">{{ post.description }}</p>
             </div>
-            <div id="user_post">
-                <a href="{% url 'posts_update' post.id %}">Edit</a>
-                <a href="{% url 'posts_delete' post.id %}">Delete</a>
-            </div>
-           
+            {% if post.creator.id == user.id %}
+                <div id="user_post">
+                    <a href="{% url 'posts_update' post.id %}">Edit</a>
+                    <a href="{% url 'posts_delete' post.id %}">Delete</a>
+                </div>
+            {% endif %}
         </li>
     {% endfor %}
 </ul>

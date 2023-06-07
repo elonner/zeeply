@@ -7,7 +7,9 @@
     {% for post in post_list %}
         <li>
             <div id="post_row1">
-                <h2>{{ post.title }}</h2> 
+                <a href="{% url 'posts_detail' post.id %}">
+                    <h2>{{ post.title }}</h2> 
+                </a>
             </div>
             
             <div id="post_row2">
