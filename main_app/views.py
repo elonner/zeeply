@@ -146,6 +146,10 @@ class ProfileCreate(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user # form.instance is the finch
         return super().form_valid(form)
 
+class ProfileUpdate (LoginRequiredMixin, UpdateView):
+  model = Profile
+  fields = ['phone', 'bio']
+
 class UsersDetail(LoginRequiredMixin, DetailView):
     model = User
     template_name = 'main_app/user_detail.html'

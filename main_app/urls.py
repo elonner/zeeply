@@ -10,6 +10,10 @@ urlpatterns = [
     path('accounts/signup/', views.signup, name='signup'),
     # PROFILE - create
     path('profiles/create/', views.ProfileCreate.as_view(), name='profiles_create'),
+    
+    #PROFILE - update
+    path('profile/<int:pk>/update/', views.ProfileUpdate.as_view(), name='profiles_update'),
+
     # USER - detail
     path('users/<int:pk>/', views.UsersDetail.as_view(), name='users_detail'),
     # USER - follow
