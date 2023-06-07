@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
+#Code for images
 import environ, os
 
 environ.Env()
@@ -80,6 +81,7 @@ WSGI_APPLICATION = 'zeeply.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DB_API_KEY = os.environ['DB_API_KEY']
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
