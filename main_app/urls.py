@@ -27,4 +27,7 @@ urlpatterns = [
     path('posts/<int:pk>/delete/', views.PostDelete.as_view(), name='posts_delete'),
     # POST - save
     path('posts/<int:post_id>/save/', views.save_post, name='posts_save'),
+    # POST - detail
+    path('posts/<int:pk>/', views.PostDetail.as_view(), name='posts_detail'),
+
 ]
