@@ -56,13 +56,25 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('home_feed_list')
     
-    def get_word_list(self):
+    def get_points(self, keywords):
         title_list = self.title.split()
         description_list = self.description.split()
         header_list = self.header.split()
         content_list = self.contentBlock.split()
         word_list = title_list + description_list + header_list + content_list
-        return word_list
+
+        points = 0
+        for keyword in keywords:
+            for word in word_list:
+                if keyword.lower() == word.lower(): points += 1
+        return points
+    # def get_word_list(self):
+    #     title_list = self.title.split()
+    #     description_list = self.description.split()
+    #     header_list = self.header.split()
+    #     content_list = self.contentBlock.split()
+    #     word_list = title_list + description_list + header_list + content_list
+    #     return word_list
     
 class Review(models.Model):
     created = models.DateField('date created', default=timezone.now)
