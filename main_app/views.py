@@ -9,6 +9,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.admin.widgets import AdminDateWidget
 from .models import Skill, Post, Profile, Review
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+from django import forms
+# from .forms import PostForm
+import uuid
+import boto3
+import os
+from .models import File
+from django.urls import reverse
 
  
 # Create your views here.
@@ -76,15 +84,49 @@ class SkillUpdate(LoginRequiredMixin, UpdateView):
 class SkillDelete(LoginRequiredMixin, DeleteView):
     model = Skill 
     success_url = '/'
-    
+
+
+class PostForm(forms.ModelForm):
+    file = forms.FileField()
+    class Meta:
+        model = Post
+        fields = ['title', 'description', 'header', 'contentBlock', 'skill', 'file']
+
 class PostCreate(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ['title', 'description', 'header', 'contentBlock', 'skill']
+    form_class = PostForm
+    # success_url = 'posts/{pk}/'
+
 
     def form_valid(self, form):
-        form.instance.creator = self.request.user # form.instance is the post
+        form.instance.creator = self.request.user
+
+        # Save the post before saves to database 
+        post = form.save(commit=False)
+
+        # Get the uploaded file from the form's cleaned data
+        media_file = form.cleaned_data.get('file') 
+
+        if media_file:
+            # Generate a unique key for the file in S3
+            key = f"posts/{uuid.uuid4().hex}/{media_file.name}"
+
+            # Uploading to AWS
+            s3 = boto3.client('s3')
+            s3.upload_fileobj(media_file, os.environ['S3_BUCKET'], key)
+
+            # Save the post object to the database
+            post.save()
+
+            # Create a File object and associate it with the post
+            file_obj = File.objects.create(url=f"{os.environ['S3_BASE_URL']}/{os.environ['S3_BUCKET']}/{key}", post=post)
+
         return super().form_valid(form)
     
+    def get_success_url(self):
+        return reverse('posts_detail', kwargs={'pk': self.object.pk})
+    
+
 class PostDetail(LoginRequiredMixin, DetailView):
     model = Post
 
@@ -144,11 +186,11 @@ def unfollow_user(request, user_id):
 
 def save_post(request, post_id):
     Post.objects.get(id=post_id).savedBy.add(request.user.id)
-    return redirect('posts_detail', post_id)
+    return redirect('/', post_id)
 
 def unsave_post(request, post_id):
     Post.objects.get(id=post_id).savedBy.remove(request.user.id)
-    return redirect('posts_detail', post_id)
+    return redirect('/', post_id)
 
 def signup(request):
     error_message = ''
@@ -194,3 +236,25 @@ class UsersDetail(LoginRequiredMixin, DetailView):
         context['post_list'] = post_list
         return context
 
+
+def add_photo(request, post_id):
+    # photo-file will be the "name" attribute on the <input type="file">
+    photo_file = request.FILES.get('photo-file', None)
+    if photo_file:
+        s3 = boto3.client('s3')
+        # need a unique "key" for S3 / needs image file extension too
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        # just in case something goes wrong
+        try:
+            bucket = os.environ['S3_BUCKET']
+            s3.upload_fileobj(photo_file, bucket, key)
+            # build the full url string
+            url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+            
+            post = Post.objects.get(id=post_id)
+            # we can assign to cat_id or cat (if you have a cat object)
+            Post.objects.create(url=url, post=post)
+        except Exception as e:
+            print('An error occurred uploading file to S3')
+            print(e)
+    return redirect('post_detail', pk=post_id)

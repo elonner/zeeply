@@ -47,4 +47,6 @@ urlpatterns = [
     # REVIEW - delete
     path('posts/<int:post_id>/reviews/<int:pk>/delete/', views.ReviewDelete.as_view(), name='reviews_delete'),
 
+    #Add Photo
+    path('posts/<int:post_id>/add_photo/', views.add_photo, name='add_photo'),
 ]
