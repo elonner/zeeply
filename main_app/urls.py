@@ -30,4 +30,7 @@ urlpatterns = [
     path('posts/<int:pk>/reviews/create/', views.ReviewCreate.as_view(), name='reviews_create'),
     # REVIEW - delete
     # path('posts/<int:pk>/reviews/<int:pk>/delete/', views.ReviewDelete.as_view(), name='reviews_delete'),
+    # POST - detail
+    path('posts/<int:pk>/', views.PostDetail.as_view(), name='posts_detail'),
+
 ]

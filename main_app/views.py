@@ -40,6 +40,9 @@ class PostCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.creator = self.request.user # form.instance is the post
         return super().form_valid(form)
+    
+class PostDetail(LoginRequiredMixin, DetailView):
+  model = Post
 
 #POST - CBV - UPDATE
 class PostUpdate(LoginRequiredMixin, UpdateView):
@@ -49,7 +52,7 @@ class PostUpdate(LoginRequiredMixin, UpdateView):
 #POST - CBV - DELETE
 class PostDelete(LoginRequiredMixin, DeleteView):
     model = Post
-    success_url = '/posts'
+    success_url = '/'
 
 class ReviewCreate(LoginRequiredMixin, CreateView):
     model = Review

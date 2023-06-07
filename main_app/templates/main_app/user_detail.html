@@ -6,15 +6,21 @@
     <p>{{ profile.bio }}</p>
     <div>
 
-    <p><a href="#">Edit</a> <a href="#">Delete</a> </p>  
+    <p><a href="#">Edit</a>  
 </div>
 <br>
 <ul>
     {% for post in post_list %}
-        <li>
-            <h2>{{ post.title }}</h2>
-    
-            <p class="description">{{ post.description }}</p>
+        <li id="card">
+            <div id="user_post">
+                <h2>{{ post.title }}</h2>
+                <p class="description">{{ post.description }}</p>
+            </div>
+            <div id="user_post">
+                <a href="{% url 'posts_update' post.id %}">Edit</a>
+                <a href="{% url 'posts_delete' post.id %}">Delete</a>
+            </div>
+           
         </li>
     {% endfor %}
 </ul>
