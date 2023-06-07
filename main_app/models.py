@@ -16,7 +16,7 @@ class Skill(models.Model):
     startDate = models.DateField()
     endDate = models.DateField(null=True, blank=True)
     isOngoing = models.BooleanField(default=False)
-    rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], null=True)
+    rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -45,10 +45,10 @@ class Post(models.Model):
     description = models.TextField(max_length=200) # need to come back when we know how much fits on a post card
     header = models.CharField(max_length=50) # change to headers
     contentBlock = models.TextField(max_length=200) # change to contentBlocks
-    rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], null=True)
+    rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], null=True, blank=True)
     skill = models.ForeignKey(Skill, on_delete=models.CASCADE)
     creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name='creator')
-    savedBy = models.ManyToManyField(User)
+    savedBy = models.ManyToManyField(User, blank=True)
 
     def __str__(self):
         return f'Title: {self.title} ({self.creator.username})'

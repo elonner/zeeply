@@ -18,10 +18,17 @@
             <div id="post_row3">
                 <p class="description">{{ post.description }}</p>
             </div>
-            <div id="post_row4">
-                <p>add stars here</p>
-                <p>add bookmark here</p>
-            </div>
+            {% if post.creator.id != user.id and user not in post.savedBy.all %}
+                <div id="post_row4">
+                    <p>add stars here</p>
+                    <a href="{% url 'posts_save' post.id %}">Save Post</a>
+                </div>
+            {% elif user in post.savedBy.all %}
+                <div id="post_row4">
+                    <p>add stars here</p>
+                    <a href="{% url 'posts_unsave' post.id %}">Unsave Post</a>
+                </div>
+            {% endif %}
         </li>
     {% endfor %}
 </ul>
