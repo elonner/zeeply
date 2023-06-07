@@ -40,27 +40,42 @@ class FollowingPosts(LoginRequiredMixin, ListView):
 class SearchList(ListView):
     model = Post
 
-    
-    def get_queryset(self):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
         if bool(self.request.GET):
             keywords = self.request.GET.get('searchInput').split()
-            posts = Post.objects.all()
-            result_list = []
-            id_list = []
-            def get_points(elem):
-                return elem[1]
-            for p in posts:
-                word_list = p.get_word_list()
-                points = 0
-                for keyword in keywords:
-                    for word in word_list:
-                        if keyword.lower() == word.lower(): points += 1
-                if points > 0: result_list.append((p.id, points))
-            result_list.sort(key=get_points)
-            for result in result_list:
-                id_list.append(result[0])
-            return Post.objects.filter(id__in=id_list)
-        return Post.objects.all()
+            post_list = context['post_list']
+            for post in post_list:
+                post.points = post.get_points(keywords)
+        return context
+
+    # def get_queryset(self):
+    #     if bool(self.request.GET):
+    #         keywords = self.request.GET.get('searchInput').split()
+    #         Post.objects.annotate(point_count=get_points(keywords))
+    #         return Post.objects.filter(point_count__gt=0)
+    #     return Post.objects.all()
+    
+    # def get_queryset(self):
+    #     if bool(self.request.GET):
+    #         keywords = self.request.GET.get('searchInput').split()
+    #         posts = Post.objects.all()
+    #         result_list = []
+    #         id_list = []
+    #         def get_points(elem):
+    #             return elem[1]
+    #         for p in posts:
+    #             word_list = p.get_word_list()
+    #             points = 0
+    #             for keyword in keywords:
+    #                 for word in word_list:
+    #                     if keyword.lower() == word.lower(): points += 1
+    #             if points > 0: result_list.append((p.id, points))
+    #         result_list.sort(key=get_points, reverse=True)
+    #         for result in result_list:
+    #             id_list.append(result[0])
+    #         return Post.objects.filter(id__in=id_list)
+    #     return Post.objects.all()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
