@@ -67,7 +67,7 @@ class Review(models.Model):
         return f'{self.rating} star review for {self.post}'
 
     def get_absolute_url(self):
-        return reverse('home_feed_list')
+        return reverse('posts_detail', kwargs={'pk': self.post.id})
 
 class File(models.Model):
     url = models.CharField(default='.jpg')
