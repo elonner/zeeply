@@ -108,7 +108,7 @@ li {
 li h2 {
   font-family: 'Courier New', sans-serif;
   color: rgba(0,0,0,1);
-  font-size: 18px;
+  font-size: 18.5px;
   margin-bottom: 5px;
   font-weight: bold;
 }
@@ -370,12 +370,16 @@ textarea {
 /* CSS for labels */
 
 label {
+  display: flex;
+  justify-content: flex-start;
   font-family: 'Courier New', sans-serif;
   width: 50px;
   color: rgba(0,0,0,1);
-  font-size: 13px;
+  font-size: 14px;
   opacity: 1;
-  margin-left: 20px;
+  margin-left: 30px;
+  margin-right: 45px;
+  font-weight: bold;
   /* text-align: left; */
 }
 
