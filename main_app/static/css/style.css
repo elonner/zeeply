@@ -209,9 +209,6 @@ h2 {
 
 /* Dropdown container */
 .dropdown {
-  /* margin-top: 0;
-  position: relative;
-  display: inline-block; */
   position: absolute;
   top: 0;
   left: 0;
@@ -264,6 +261,51 @@ h2 {
 }
 
 .btn {
+  display: flex;
+  align-items: center;
+  color: black;
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px;
+  display: flex; 
+  padding: 10px 20px;
+  font-size: 15px;
+  cursor: pointer;
+  border: 1px solid rgba(0,0,0,1);
+  border-radius: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background: rgba(27,87,176,1);
+}
+
+.btn:hover{
+  background-color: #45a049;
+}
+
+#edit-btn {
+  margin-right: 10px;
+  color: black;
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px;
+  display: flex; 
+  align-items: center;
+  padding: 10px 20px;
+  font-size: 15px;
+  cursor: pointer;
+  border: 1px solid rgba(0,0,0,1);
+  border-radius: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background: rgba(27,87,176,1);
+}
+
+#delete-btn {
+  color: black;
   display: block;
   margin: 0 auto;
   margin-top: 20px;
@@ -304,13 +346,17 @@ h2 {
 /* Styles for form input */
 
 /* Create post input title */
+
+
  #id_title {
   display: flex;
-  margin: 0 auto;
   align-items: center;
-  width: 200px;
   height: 25px;
-  background: rgba(236,236,243,1);
+  width: 180px;
+  margin: 0 auto;
+  margin-top: 10px;
+  /* background: rgba(236,236,243,1); */
+  background: #DCE5EC;
   opacity: 1;
   border: 1px solid rgba(0,0,0,1);
   border-top-left-radius: 8px;
@@ -325,9 +371,10 @@ h2 {
   margin: 0 auto;
   display: flex;
   align-items: center;
-  width: 200px;
+  width: 180px;
   height: 25px;
-  background: rgba(236,236,243,1);
+  /* background: rgba(236,236,243,1); */
+  background: #DCE5EC;
   opacity: 1;
   border: 1px solid rgba(0,0,0,1);
   border-top-left-radius: 8px;
@@ -340,9 +387,10 @@ h2 {
 textarea {
   display: flex;
   margin: 0 auto;
-  width: 200px;
+  width: 180px;
   height: 100px;
-  background: rgba(236,236,243,1);
+  /* background: rgba(236,236,243,1); */
+  background: #DCE5EC;
   opacity: 1;
   border: 1px solid rgba(0,0,0,1);
   border-top-left-radius: 8px;
@@ -354,9 +402,10 @@ textarea {
 #id_skill {
   display: flex;
   margin: 0 auto;
-  width: 200px;
+  width: 180px;
   height: 23px;
-  background: rgba(236,236,243,1);
+  /* background: rgba(236,236,243,1); */
+  background: #DCE5EC;
   opacity: 1;
   border: 1px solid rgba(0,0,0,1);
   border-top-left-radius: 12px;
@@ -364,6 +413,32 @@ textarea {
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
   overflow: hidden;
+}
+
+/* Post form container */
+#post-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 340px;
+  height: 420px;
+  /* margin-bottom: 20px; */
+  margin-right: 20px; 
+  margin-left: 20px; 
+  background: #ECECF3;
+  opacity: 1;
+  border: 1px solid rgba(0,0,0,1);
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+
+.post-form {
+  display: flex;
+  flex-direction: column;
 }
 
 
@@ -377,7 +452,7 @@ label {
   color: rgba(0,0,0,1);
   font-size: 14px;
   opacity: 1;
-  margin-left: 30px;
+  margin-left: 10px;
   margin-right: 45px;
   font-weight: bold;
   /* text-align: left; */
@@ -394,6 +469,10 @@ label {
   footer {
     width: 100%;
   }
+
+  /* .post-form {
+    width: 100%;
+  } */
 
   #content {
     width: 100%;
