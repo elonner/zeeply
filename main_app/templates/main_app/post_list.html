@@ -12,18 +12,18 @@
     </form>
 {% else %}
     <div class="following-explore">
-    <a id="following-link" href="{% url 'following_posts' %}">Following</a>
-    |
-    <span id="explore-link">Explore</span>
+        <a id="following-link" href="{% url 'following_posts' %}">Following</a>
+        |
+        <span id="explore-link">Explore</span>
     </div>
-    <form action="{% url 'home_feed_list' %}">
-        <select name="filter" required>
+    <form class="filter-form" action="{% url 'home_feed_list' %}">
+        <select class="filter-search-input" name="filter" required>
             <option value=""></option>
             {% for skill in skill_list %}
                 <option value="{{skill.skill}}">{{skill.skill}}</option>
             {% endfor %}
         </select>
-        <button type="submit">Filter</button>
+        <button class="filter-btn" type="submit">Filter</button>
     </form>
 {% endif %}
 <div class="li-post-container">

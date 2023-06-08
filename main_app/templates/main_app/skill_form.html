@@ -1,3 +1,5 @@
+<div id="skill-create-page">
+
 {% extends 'base.html' %}
 
 {% block content %}
@@ -7,16 +9,20 @@
     <h1>Add Skill</h1>
 {% endif %}
 
-<form action="" method="POST">
-    <!-- Django requires the following for security purposes -->
-    {% csrf_token %}
-    <table>
-        <!-- Render the inputs inside of <tr>s & <td>s -->
-        {{ form.as_table }}
-    </table>
-    <div id="submit_center">
-        <input type="submit" value="Submit" class="btn">
+<div id="skill-form-container">
+        <form class="skill-form" action="" method="POST">
+            <!-- Django requires the following for security purposes -->
+            {% csrf_token %}
+            <table>
+                <!-- Render the inputs inside of <tr>s & <td>s -->
+                {{ form.as_table }}
+            </table>
+            <div id="submit_center">
+                <input type="submit" value="Submit" class="btn">
+            </div>
+            
+        </form>
     </div>
-    
-</form>
+</div>
+
 {% endblock %}
