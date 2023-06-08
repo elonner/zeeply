@@ -722,6 +722,32 @@ label {
 
 }
 
+#post-submit-btn {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+  color: black;
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px;
+  display: flex; 
+  align-items: center;
+  padding: 2px 40px;
+  font-size: 15px;
+  cursor: pointer;
+  border: 1px solid rgba(0,0,0,1);
+  border-radius: 30px;
+  border-top-left-radius: 23px;
+  border-top-right-radius: 23px;
+  border-bottom-left-radius: 23px;
+  border-bottom-right-radius: 23px;
+  background: rgba(27,87,176,1);
+
+}
+
 
 
 

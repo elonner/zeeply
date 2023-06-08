@@ -3,11 +3,8 @@
   <div id="post-detail">
   <h1>{{ post.title }}</h1>
   <a href="{% url 'users_detail' post.creator.id %}">
-      <h3>{{ post.creator.username }}</h3>
+      <p>by @{{ post.creator.username }}</p>
   </a>
-  <p>{{ post.description }}</p>
-  
-
   <h3>{{ post.header }}</h3>
   <p>{{ post.contentBlock }}</p>
 
@@ -27,7 +24,7 @@
   {% endfor %}
 
   <h2>Reviews</h2>
-  <button>
+  <button id="post-submit-btn">
     <a href="{% url 'reviews_create' post.id %}">Leave Review</a>
   </button>
   
