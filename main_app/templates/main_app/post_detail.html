@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 
+
 <h1>{{ post.title }}</h1>
 <a href="{% url 'users_detail' post.creator.id %}">
-    <h3>{{ post.creator.username }}</h3>
+    <h3 id="profile-user-title">{{ post.creator.username }}</h3>
 </a>
 <p>{{ post.description }}</p>
 <a href="{% url 'reviews_create' post.id %}">Leave Review</a>
@@ -31,4 +32,6 @@
   </video>
 {% endif %}
 {% endfor %}
+
+
 {% endblock %}
