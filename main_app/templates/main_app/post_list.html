@@ -7,14 +7,17 @@
     <a href="{% url 'home_feed_list' %}">Explore</a>
 {% elif is_search_page %}
     <form action="{% url 'search_list' %}">
-        <input type="text" name="searchInput" placeholder="Search posts" required>
+        <input id="post-list-search-input" type="text" name="searchInput" placeholder="Search posts" required>
         <button style="display: none" type="submit"></button>
     </form>
 {% else %}
-    <a href="{% url 'following_posts' %}">Following</a>
+    <div class="following-explore">
+    <a id="following-link" href="{% url 'following_posts' %}">Following</a>
     |
-    <span>Explore</span>
+    <span id="explore-link">Explore</span>
+    </div>
 {% endif %}
+<div class="li-post-container">
 <ul>
     {% for post in post_list %}
         {% if post.creator.id != user.id %}
@@ -50,6 +53,7 @@
         {% endif %}
     {% endfor %}
 </ul>
+</div>
 
 
 {% endblock %}
