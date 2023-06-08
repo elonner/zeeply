@@ -32,8 +32,8 @@
             </div>
             {% if post.creator.id == user.id %}
                 <div id="user_post">
-                    <a href="{% url 'posts_update' post.id %}">Edit</a>
-                    <a href="{% url 'posts_delete' post.id %}">Delete</a>
+                    <a href="{% url 'posts_update' post.id %}" id="edit-btn">Edit</a>
+                    <a href="{% url 'posts_delete' post.id %}" id="delete-btn">Delete</a>
                 </div>
             {% endif %}
         </li>
