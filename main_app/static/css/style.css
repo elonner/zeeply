@@ -13,6 +13,17 @@ body {
 }
 
 /* Styles for the main heading */
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s, box-shadow 0.3s;
+}
+
+a:hover {
+  color: #3498db;
+  text-shadow: 0 0 5px #3498db;
+}
+
 
 h1 {
   font-family: 'Courier New', sans-serif;
@@ -693,6 +704,23 @@ label {
   width: 170px;
 }
 
+#block-sizing {
+  margin-bottom: 20px;
+  padding-bottom: 40px;
+}
+
+#post-detail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+}
+
+#post-detail-picture {
+  width: 400px;
+
+}
 
 
 
