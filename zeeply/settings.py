@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [
@@ -80,17 +81,17 @@ WSGI_APPLICATION = 'zeeply.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DB_API_KEY = os.environ['DB_API_KEY']
+# DB_API_KEY = os.environ['DB_API_KEY']
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'elonner/zeeply',
-        'USER': 'elonner',
-        'PASSWORD': DB_API_KEY,
-        'HOST': 'db.bit.io',
-        'PORT': '5432',
-    }
+  'default': {
+    'ENGINE': 'django.db.backends.postgresql',
+    'NAME': 'zeeply',
+    'USER': os.environ['DB_USER'],
+    'PASSWORD': os.environ['DB_PW'],
+    'HOST': os.environ['DATABASE_URL'],
+    'PORT': '5432',
+  }
 }
 
 
