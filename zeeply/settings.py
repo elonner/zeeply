@@ -89,7 +89,7 @@ DATABASES = {
     'NAME': 'zeeply',
     'USER': os.environ['DB_USER'],
     'PASSWORD': os.environ['DB_PW'],
-    'HOST': os.environ['DATABASE_URL'],
+    'HOST': os.environ['DB_HOST'],
     'PORT': '5432',
   }
 }
