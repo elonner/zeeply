@@ -5,6 +5,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from datetime import date
 from django.urls import reverse
 from django.utils import timezone
+from phonenumber_field.modelfields import PhoneNumberField
 import os
 
 
@@ -100,7 +101,7 @@ class File(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='curr_user')
     bio = models.TextField(max_length=400, null=True, blank=True)
-    phone = models.IntegerField(null=True, blank=True)
+    phone = PhoneNumberField(null=True, blank=True, unique=True)
     rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], null=True)
     followers = models.ManyToManyField(User, related_name='follower')
     following = models.ManyToManyField(User)
