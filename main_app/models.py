@@ -32,12 +32,12 @@ class Skill(models.Model):
         return reverse('home_feed_list')
     
     # FIGURE OUT LATER
-    def post(self, request, *args, **kwargs):
-        print('hi1')
-        if request.isOngoing:
-            print('hi')
-            self.endDate = timezone.now;
-        return super().post(request, *args, **kwargs)
+    # def post(self, request, *args, **kwargs):
+    #     print('hi1')
+    #     if request.isOngoing:
+    #         print('hi')
+    #         self.endDate = timezone.now;
+    #     return super().post(request, *args, **kwargs)
     
 class Post(models.Model):
     created = models.DateField('date created', default=timezone.now)
@@ -68,13 +68,6 @@ class Post(models.Model):
             for word in word_list:
                 if keyword.lower() == word.lower(): points += 1
         return points
-    # def get_word_list(self):
-    #     title_list = self.title.split()
-    #     description_list = self.description.split()
-    #     header_list = self.header.split()
-    #     content_list = self.contentBlock.split()
-    #     word_list = title_list + description_list + header_list + content_list
-    #     return word_list
     
 class Review(models.Model):
     created = models.DateField('date created', default=timezone.now)

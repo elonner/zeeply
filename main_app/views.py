@@ -1,5 +1,6 @@
 from typing import Any, Dict
 from django.db.models.query import QuerySet
+from django.db.models import Func, IntegerField, F, Case, When
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -37,45 +38,31 @@ class FollowingPosts(LoginRequiredMixin, ListView):
         context['is_following_page'] = True
         return context
     
+class GetPoints(Func):
+    function = 'get_points'
+    output_field = IntegerField()
+    
 class SearchList(ListView):
     model = Post
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+    
+    def get_queryset(self):
         if bool(self.request.GET):
             keywords = self.request.GET.get('searchInput').split()
-            post_list = context['post_list']
-            for post in post_list:
-                post.points = post.get_points(keywords)
-        return context
-
-    # def get_queryset(self):
-    #     if bool(self.request.GET):
-    #         keywords = self.request.GET.get('searchInput').split()
-    #         Post.objects.annotate(point_count=get_points(keywords))
-    #         return Post.objects.filter(point_count__gt=0)
-    #     return Post.objects.all()
-    
-    # def get_queryset(self):
-    #     if bool(self.request.GET):
-    #         keywords = self.request.GET.get('searchInput').split()
-    #         posts = Post.objects.all()
-    #         result_list = []
-    #         id_list = []
-    #         def get_points(elem):
-    #             return elem[1]
-    #         for p in posts:
-    #             word_list = p.get_word_list()
-    #             points = 0
-    #             for keyword in keywords:
-    #                 for word in word_list:
-    #                     if keyword.lower() == word.lower(): points += 1
-    #             if points > 0: result_list.append((p.id, points))
-    #         result_list.sort(key=get_points, reverse=True)
-    #         for result in result_list:
-    #             id_list.append(result[0])
-    #         return Post.objects.filter(id__in=id_list)
-    #     return Post.objects.all()
+            posts = Post.objects.all()
+            result_list = []
+            id_list = []
+            def point_value(elem):
+                return elem[1]
+            for p in posts:
+                points = p.get_points(keywords)
+                if points > 0: result_list.append((p.id, points))
+            result_list.sort(key=point_value, reverse=True)
+            for result in result_list:
+                id_list.append(result[0])
+            preserved = Case(*[When(pk=pk, then=pos) for pos, pk in enumerate(id_list)])
+            queryset = Post.objects.filter(pk__in=id_list).order_by(preserved)[:20]
+            return queryset
+        return Post.objects.all()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
