@@ -29,6 +29,7 @@ class HomeFeedList(ListView):
         context = super().get_context_data(**kwargs)
         skill_list = Skill.objects.all()
         context['skill_list'] = skill_list
+        context['is_explore_page'] = True
         return context
     
     def get_queryset(self):
@@ -176,7 +177,18 @@ class SavedList(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         user = self.request.user
+        if bool(self.request.GET):
+            skill_name = self.request.GET.get('filter')
+            filter_skill = Skill.objects.filter(skill=skill_name)
+            return Post.objects.filter(skill__in=filter_skill).filter(savedBy=user)
         return Post.objects.filter(savedBy=user)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        skill_list = Skill.objects.all()
+        context['skill_list'] = skill_list
+        context['is_saved_page'] = True
+        return context
     
 class ReviewCreate(LoginRequiredMixin, CreateView):
     model = Review

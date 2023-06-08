@@ -5,18 +5,28 @@
     <span>Following</span>
     |
     <a href="{% url 'home_feed_list' %}">Explore</a>
+{% elif is_explore_page %}
+    <div class="following-explore">
+        <a id="following-link" href="{% url 'following_posts' %}">Following</a>
+        |
+        <span id="explore-link">Explore</span>
+    </div>
+    <form action="{% url 'home_feed_list' %}">
+        <select name="filter" required>
+            <option value=""></option>
+            {% for skill in skill_list %}
+                <option value="{{skill.skill}}">{{skill.skill}}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Filter</button>
+    </form>
 {% elif is_search_page %}
     <form action="{% url 'search_list' %}">
         <input id="post-list-search-input" type="text" name="searchInput" placeholder="  Search Posts" required>
         <button style="display: none" type="submit"></button>
     </form>
-{% else %}
-    <div class="following-explore">
-    <a id="following-link" href="{% url 'following_posts' %}">Following</a>
-    |
-    <span id="explore-link">Explore</span>
-    </div>
-    <form action="{% url 'home_feed_list' %}">
+{% elif is_saved_page %}
+    <form action="{% url 'saved_list' %}">
         <select name="filter" required>
             <option value=""></option>
             {% for skill in skill_list %}
