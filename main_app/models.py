@@ -44,7 +44,7 @@ class Post(models.Model):
     title = models.CharField(max_length=50)
     description = models.TextField(max_length=200) # need to come back when we know how much fits on a post card
     header = models.CharField(max_length=50) # change to headers
-    contentBlock = models.TextField(max_length=200) # change to contentBlocks
+    contentBlock = models.TextField(max_length=10000) # change to contentBlocks
     rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], null=True, blank=True)
     skill = models.ForeignKey(Skill, on_delete=models.CASCADE)
     creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name='creator')
@@ -92,7 +92,7 @@ class File(models.Model):
 
     def is_vid(self):
         file_name, file_extension = os.path.splitext(self.url)
-        return file_extension in ('.mp4', '.mov', '.avi')
+        return file_extension in ('.mp4', '.mov', '.avi', '.MOV')
 
     def __str__(self):
         return f"File for {self.post} - {self.url}"
