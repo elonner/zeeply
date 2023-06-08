@@ -16,6 +16,15 @@
     |
     <span id="explore-link">Explore</span>
     </div>
+    <form action="{% url 'home_feed_list' %}">
+        <select name="filter" required>
+            <option value=""></option>
+            {% for skill in skill_list %}
+                <option value="{{skill.skill}}">{{skill.skill}}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Filter</button>
+    </form>
 {% endif %}
 <div class="li-post-container">
 <ul>
