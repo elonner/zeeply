@@ -12,6 +12,21 @@ body {
   background-attachment: fixed;
 }
 
+
+/* Login */
+#zeeply-login-logo{
+  font-family: 'Courier New', sans-serif;
+  font-size: 60px;
+}
+
+#login-page{
+  background-image: url('/static/images/sky_background.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-size: 100% 100%;
+  background-attachment: fixed;
+}
+
 /* Styles for the main heading */
 
 h1 {

@@ -1,4 +1,21 @@
-<h1>Log In</h1>
+<style>
+  html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+  }
+
+  #login-page {
+      background-image: url('/static/images/sky_background.png');
+      background-size: cover;
+      background-position: center;
+      height: 100%;
+  }
+</style>
+
+
+<div id="login-page">
+<h1 id="zeeply-login-logo">🌈 zeeply</h1>
 
 <form method="POST" action="{% url 'login' %}">
     {% csrf_token %}
@@ -6,3 +23,5 @@
     <input type="hidden" name="next" value="{{ next }}">
     <button type="submit" class="btn">Log In</button>
   </form>
+
+</div>
