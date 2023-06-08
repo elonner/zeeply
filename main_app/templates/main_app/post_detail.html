@@ -1,12 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
-  <div id="post-detail">
-    <h1>{{ post.title }}</h1>
-    <a href="{% url 'users_detail' post.creator.id %}">
-        <p>by @{{ post.creator.username }}</p>
-    </a>
-    <h3>{{ post.header }}</h3>
-    <p>{{ post.contentBlock }}</p>
+
+
+<h1>{{ post.title }}</h1>
+<a href="{% url 'users_detail' post.creator.id %}">
+    <h3 id="profile-user-title">{{ post.creator.username }}</h3>
+</a>
+<p>{{ post.description }}</p>
+<a href="{% url 'reviews_create' post.id %}">Leave Review</a>
+
+<h3>{{ post.header }}</h3>
+<p>{{ post.content }}</p>
+
+<h2>Reviews</h2>
+{% for review in reviews %}
+    <p>{{ review }}</p>
+{% endfor %}
 
     {% for file in files %}
     {% if file.is_photo %}
