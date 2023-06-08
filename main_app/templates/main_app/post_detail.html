@@ -1,36 +1,36 @@
 {% extends 'base.html' %}
 {% block content %}
   <div id="post-detail">
-  <h1>{{ post.title }}</h1>
-  <a href="{% url 'users_detail' post.creator.id %}">
-      <p>by @{{ post.creator.username }}</p>
-  </a>
-  <h3>{{ post.header }}</h3>
-  <p>{{ post.contentBlock }}</p>
+    <h1>{{ post.title }}</h1>
+    <a href="{% url 'users_detail' post.creator.id %}">
+        <p>by @{{ post.creator.username }}</p>
+    </a>
+    <h3>{{ post.header }}</h3>
+    <p>{{ post.contentBlock }}</p>
 
-  {% for file in files %}
-  {% if file.is_photo %}
-    <img  id="post-detail-picture" src="{{ file.url }}" alt="{{ file }}" width="400">
-  {% endif %}
-  {% endfor %}
+    {% for file in files %}
+    {% if file.is_photo %}
+      <img  id="post-detail-picture" src="{{ file.url }}" alt="{{ file }}" width="400">
+    {% endif %}
+    {% endfor %}
 
-  <!-- Display videos -->
-  {% for file in files %}
-  {% if file.is_vid %}
-    <video id="post-detail-picture" controls>
-      <source  src="{{ file.url }}" type="video/mp4">
-    </video>
-  {% endif %}
-  {% endfor %}
+    <!-- Display videos -->
+    {% for file in files %}
+    {% if file.is_vid %}
+      <video id="post-detail-picture" controls>
+        <source  src="{{ file.url }}" type="video/mp4">
+      </video>
+    {% endif %}
+    {% endfor %}
 
-  <h2>Reviews</h2>
-  <button id="post-submit-btn">
-    <a href="{% url 'reviews_create' post.id %}">Leave Review</a>
-  </button>
-  
-  {% for review in reviews %}
-    <p>{{ review }}</p>
-  {% endfor %}
+    <h2>Reviews</h2>
+    <button id="post-submit-btn">
+      <a href="{% url 'reviews_create' post.id %}">Leave Review</a>
+    </button>
+    
+    {% for review in reviews %}
+      <p>{{ review }}</p>
+    {% endfor %}
 </div>
 
 {% endblock %}
