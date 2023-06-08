@@ -101,7 +101,7 @@ class File(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='curr_user')
     bio = models.TextField(max_length=400, null=True, blank=True)
-    phone = PhoneNumberField(null=True, blank=True, unique=True)
+    phone = models.IntegerField(null=True, blank=True)
     rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], null=True)
     followers = models.ManyToManyField(User, related_name='follower')
     following = models.ManyToManyField(User)
