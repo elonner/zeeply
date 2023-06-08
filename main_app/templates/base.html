@@ -51,9 +51,11 @@
       
     {% block content %}
     {% endblock %}
-    <footer>
+
+
         
-        {% if user.is_authenticated %}
+    {% if user.is_authenticated %}
+        <footer>
             <a href="{% url 'home_feed_list' %}">
                 <span class="icon">&#127968;</span>
                 <span>Home</span>
@@ -75,7 +77,7 @@
                 <span class="icon">&#128100;</span>
                 <span>Profile</span>
             </a>
-        {% endif %}
-    </footer>
+        </footer>
+    {% endif %}
 </body>
 </html>
