@@ -2,42 +2,120 @@
 
 body {
   padding: 0;
+  margin:0;
   font-family: Arial, sans-serif;
   background-color: beige;
-  margin: 10px /* Add this line to remove default margin */
+  background-image: url('/static/images/sky_background.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-size: 100% 100%;
+  background-attachment: fixed;
 }
 
 /* Styles for the main heading */
+
 h1 {
-  color: #333;
-  font-size: 24px;
+  font-family: 'Courier New', sans-serif;
+  color: black;
+  font-size: 30px;
   margin-bottom: 20px;
   text-align: center;
 }
 
+#zeeply-header-logo {
+  display: flex;
+  justify-content: center;
+  margin-right: 45px;
+  margin-top: 40px;
+  margin-bottom: 0;
+  font-family: 'Courier New', sans-serif;
+  font-size: 25px;
+}
+
+.input-home-feed-list {
+  display: flex;
+  justify-content: center;
+  width: 150px;
+  height: 25px;
+  background: rgba(236,236,243,1);
+  opacity: 1;
+  border: 1px solid rgba(0,0,0,1);
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  overflow: hidden;
+}
+
+#post-list-search-input {
+  margin-left: 20px;
+  width: 150px;
+  height: 23px;
+  background: rgba(236,236,243,1);
+  opacity: 1;
+  border: 1px solid rgba(0,0,0,1);
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  overflow: hidden;
+}
+
+/* Styles for Explore and Following Links */
+
+.following-explore{
+  margin-top: 0;
+  display: flex;
+  justify-content: center;
+}
+
+#following-link {
+  font-family: 'Courier New', sans-serif;
+  color: rgba(0,0,0,1);
+  font-size: 18px;
+}
+
+#explore-link {
+  font-family: 'Courier New', sans-serif;
+  color: rgba(0,0,0,1);
+  font-size: 18px;
+}
+
+
+
 /* Styles for the post list container */
+
 ul {
   list-style: none;
   padding: 0;
 }
 
 /* Styles for each post item */
+
 li {
   margin-bottom: 20px;
   margin-right: 20px;
-  background-color: #9799BA;
+  margin-left: 20px;
+  background: rgba(255,255,255,1);
   border-radius: 10px;
   padding: 10px;
+  border: 1.5px solid rgba(0,0,0,1);
+  /* border: 3px solid rgba(44,133,190,1); */
 }
+
 
 /* Styles for the post title */
 li h2 {
-  font-size: 18px;
+  font-family: 'Courier New', sans-serif;
+  color: rgba(0,0,0,1);
+  font-size: 18.5px;
   margin-bottom: 5px;
+  font-weight: bold;
 }
 
 /* Styles for the user name */
 li .username {
+  font-family: 'Courier New', sans-serif;
   font-size: 14px;
   color: #888;
 }
@@ -47,13 +125,20 @@ li .description {
   font-size: 14px;
 }
 
+li p {
+  font-family: 'Courier New', sans-serif;
+  font-size: 15px;
+  color: rgba(0,0,0,1);
+}
+
+
+
 /* Styles for the container */
 
 header {
-  background-color: aquamarine;
   width: 100%; /* Change the width to 100% for consistency */
   text-align: center; /* Center align the content within the header */
-  padding: 20px 0; /* Add padding to the top and bottom of the header */
+  /* padding: 20px 0; Add padding to the top and bottom of the header */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -64,8 +149,9 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%; /* Change the width to 100% for consistency */
-  background-color: #f2f2f2;
+  background: rgba(255,255,255,1);
   border-top: 1px solid #ccc;
+  border: 2px solid rgba(0,0,0,1);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -75,12 +161,14 @@ footer {
 }
 
 footer a {
+  font-family: 'Courier New', sans-serif;
   text-decoration: none;
   color: #333;
   display: flex;
   flex-direction: column;
   align-items: center;
   flex: 1;
+  font-size: 11px;
 }
 
 footer .icon {
@@ -99,7 +187,7 @@ header .icon {
   margin-bottom: 20px;
   padding: 10px;
   background-color: #9799BA;
-  border: 1px solid #ccc;
+  border: 1px solid #ccc; 
 }
 
 h2 {
@@ -108,6 +196,7 @@ h2 {
 }
 
 .username {
+  font-family: 'Courier New', sans-serif;
   font-size: 14px;
   color: #666;
   margin-top: 0;
@@ -120,12 +209,18 @@ h2 {
 
 /* Dropdown container */
 .dropdown {
-  position: relative;
-  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: 20px;
+  margin-top: 10px;
+
 }
 
 /* Dropdown button */
 .dropbtn {
+  top: 10px;
+  right: 10px;
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -133,6 +228,7 @@ h2 {
 
 /* Dropdown content (hidden by default) */
 .dropdown-content {
+  margin-top: 0;
   display: none;
   position: absolute;
   background-color: #f9f9f9;
@@ -160,23 +256,73 @@ h2 {
 }
 
 #at {
+  font-family: 'Courier New', sans-serif;
   color: black;
 }
 
 .btn {
+  display: flex;
+  align-items: center;
+  color: black;
   display: block;
   margin: 0 auto;
   margin-top: 20px;
-  display: flex;
-  align-items: center;
-  padding: 10px 30px;
-  font-size: 24px;
+  display: flex; 
+  padding: 10px 20px;
+  font-size: 15px;
   cursor: pointer;
-  border-radius: 7px;
-  border-bottom-left-radius: 0;
-  background-color: #ffacac;
-  color: #53488d;
+  border: 1px solid rgba(0,0,0,1);
+  border-radius: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background: rgba(27,87,176,1);
 }
+
+.btn:hover{
+  background-color: #45a049;
+}
+
+#edit-btn {
+  margin-right: 10px;
+  color: black;
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px;
+  display: flex; 
+  align-items: center;
+  padding: 10px 20px;
+  font-size: 15px;
+  cursor: pointer;
+  border: 1px solid rgba(0,0,0,1);
+  border-radius: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background: rgba(27,87,176,1);
+}
+
+#delete-btn {
+  color: black;
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px;
+  display: flex; 
+  align-items: center;
+  padding: 10px 20px;
+  font-size: 15px;
+  cursor: pointer;
+  border: 1px solid rgba(0,0,0,1);
+  border-radius: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background: rgba(27,87,176,1);
+}
+
 
 #submitcenter {
   display: flex;
@@ -197,6 +343,123 @@ h2 {
     justify-content: center;
 }
 
+/* Styles for form input */
+
+/* Create post input title */
+
+
+ #id_title {
+  display: flex;
+  align-items: center;
+  height: 25px;
+  width: 180px;
+  margin: 0 auto;
+  margin-top: 10px;
+  /* background: rgba(236,236,243,1); */
+  background: #DCE5EC;
+  opacity: 1;
+  border: 1px solid rgba(0,0,0,1);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+/* Create post input header*/
+#id_header {
+  /* display: block; */
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  width: 180px;
+  height: 25px;
+  /* background: rgba(236,236,243,1); */
+  background: #DCE5EC;
+  opacity: 1;
+  border: 1px solid rgba(0,0,0,1);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+/* Create post input textarea*/
+textarea {
+  display: flex;
+  margin: 0 auto;
+  width: 180px;
+  height: 100px;
+  /* background: rgba(236,236,243,1); */
+  background: #DCE5EC;
+  opacity: 1;
+  border: 1px solid rgba(0,0,0,1);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+#id_skill {
+  display: flex;
+  margin: 0 auto;
+  width: 180px;
+  height: 23px;
+  /* background: rgba(236,236,243,1); */
+  background: #DCE5EC;
+  opacity: 1;
+  border: 1px solid rgba(0,0,0,1);
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  overflow: hidden;
+}
+
+/* Post form container */
+#post-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 340px;
+  height: 420px;
+  /* margin-bottom: 20px; */
+  margin-right: 20px; 
+  margin-left: 20px; 
+  background: #ECECF3;
+  opacity: 1;
+  border: 1px solid rgba(0,0,0,1);
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+
+.post-form {
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* CSS for labels */
+
+label {
+  display: flex;
+  justify-content: flex-start;
+  font-family: 'Courier New', sans-serif;
+  width: 50px;
+  color: rgba(0,0,0,1);
+  font-size: 14px;
+  opacity: 1;
+  margin-left: 10px;
+  margin-right: 45px;
+  font-weight: bold;
+  /* text-align: left; */
+}
+
+
+
 /* Media Queries */
 
 @media screen and (max-width: 767px) {
@@ -206,6 +469,10 @@ h2 {
   footer {
     width: 100%;
   }
+
+  /* .post-form {
+    width: 100%;
+  } */
 
   #content {
     width: 100%;
