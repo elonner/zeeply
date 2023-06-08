@@ -154,6 +154,11 @@ class PostDetail(LoginRequiredMixin, DetailView):
         context = super().get_context_data(**kwargs)
         reviews = Review.objects.filter(post=self.kwargs.get('pk'))
         context['reviews'] = reviews
+
+         # Get the associated pictures/files for the post
+        files = File.objects.filter(post=self.object)
+        context['files'] = files
+
         return context
 
 #POST - CBV - UPDATE
