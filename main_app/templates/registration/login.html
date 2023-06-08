@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <style>
   html, body {
       height: 100%;
@@ -23,5 +24,44 @@
     <input type="hidden" name="next" value="{{ next }}">
     <button type="submit" class="btn">Log In</button>
   </form>
+=======
+<div id="login-page">
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <!-- Courier New Font -->
+    <link href="https://fonts.cdnfonts.com/css/courier-new" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.4.js"
+    integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <script defer src="{% static 'js/script.js' %}"></script>
+</head>
+
+<body id="login-body">
+    
+  <div>
+    <h1 id="zeeply-login-logo">🌈zeeply</h1>
+  </div>
+  <div id="login-form-container">
+    <form id="login-form" method="POST" action="{% url 'login' %}">
+        {% csrf_token %}
+      <table>
+        {{ form.as_p }}
+      </table>
+      <div>
+        <input type="hidden" name="next" value="{{ next }}">
+      </div>
+        <button id="login-button" type="submit" class="btn">Log In</button>
+      </form>
+    </div>
+</body>
+</html>
+>>>>>>> main
 
 </div>
