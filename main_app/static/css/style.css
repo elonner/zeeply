@@ -49,7 +49,24 @@ h1 {
 
 #post-list-search-input {
   margin-left: 20px;
-  width: 150px;
+  width: 340px;
+  height: 23px;
+  background: rgba(236,236,243,1);
+  opacity: 1;
+  border: 1.5px solid rgba(0,0,0,1);
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  overflow: hidden;
+}
+
+
+.filter-search-input {
+  margin-top: 10px;
+  margin-left: 20px;
+  margin-bottom: -15px;
+  width: 100px;
   height: 23px;
   background: rgba(236,236,243,1);
   opacity: 1;
@@ -131,6 +148,12 @@ li p {
   color: rgba(0,0,0,1);
 }
 
+#profile-bio-p{
+  font-family: 'Courier New', sans-serif;
+  font-size: 15px;
+  color: rgba(0,0,0,1);
+}
+
 
 
 /* Styles for the container */
@@ -191,8 +214,13 @@ header .icon {
 }
 
 h2 {
-  font-size: 24px;
+  font-size: 25px;
   margin-bottom: 5px;
+}
+
+#profile-user-title {
+  font-size: 24px;
+  font-family: 'Courier New', sans-serif;
 }
 
 .username {
@@ -214,7 +242,6 @@ h2 {
   left: 0;
   margin-left: 20px;
   margin-top: 10px;
-
 }
 
 /* Dropdown button */
@@ -228,6 +255,7 @@ h2 {
 
 /* Dropdown content (hidden by default) */
 .dropdown-content {
+  font-family: 'Courier New', sans-serif;
   margin-top: 0;
   display: none;
   position: absolute;
@@ -235,6 +263,9 @@ h2 {
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
+  border: 2px solid rgba(0,0,0,1);
+  background: rgba(255,255,255,1);
+  border-radius: 10px;
 }
 
 /* Links inside the dropdown */
@@ -285,42 +316,64 @@ h2 {
 }
 
 #edit-btn {
-  margin-right: 10px;
+  display: flex;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
   color: black;
   display: block;
   margin: 0 auto;
   margin-top: 20px;
   display: flex; 
   align-items: center;
-  padding: 10px 20px;
+  padding: 2px 40px;
   font-size: 15px;
   cursor: pointer;
   border: 1px solid rgba(0,0,0,1);
-  border-radius: 20px;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+  border-radius: 30px;
+  border-top-left-radius: 23px;
+  border-top-right-radius: 23px;
+  border-bottom-left-radius: 23px;
+  border-bottom-right-radius: 23px;
   background: rgba(27,87,176,1);
 }
 
 #delete-btn {
+  display: flex;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
   color: black;
   display: block;
   margin: 0 auto;
   margin-top: 20px;
   display: flex; 
   align-items: center;
-  padding: 10px 20px;
+  padding: 2px 40px;
   font-size: 15px;
   cursor: pointer;
   border: 1px solid rgba(0,0,0,1);
-  border-radius: 20px;
+  border-radius: 30px;
+  border-top-left-radius: 23px;
+  border-top-right-radius: 23px;
+  border-bottom-left-radius: 23px;
+  border-bottom-right-radius: 23px;
+  background: rgba(27,87,176,1);
+}
+
+
+.filter-btn{
+  width: 50px;
+  height: 25px;
+  background: rgba(255,255,255,1);
+  opacity: 1;
+  border: 1px solid rgba(0,0,0,1);
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
-  background: rgba(27,87,176,1);
 }
 
 
@@ -415,6 +468,81 @@ textarea {
   overflow: hidden;
 }
 
+#id_categories {
+  display: flex;
+  margin: 0 auto;
+  width: 180px;
+  height: 23px;
+  /* background: rgba(236,236,243,1); */
+  background: #DCE5EC;
+  opacity: 1;
+  border: 1px solid rgba(0,0,0,1);
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  overflow: hidden;
+}
+
+#id_startDate {
+  display: flex;
+  margin: 0 auto;
+  width: 180px;
+  height: 23px;
+  /* background: rgba(236,236,243,1); */
+  background: #DCE5EC;
+  opacity: 1;
+  border: 1px solid rgba(0,0,0,1);
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  overflow: hidden;
+}
+
+#id_endDate{
+  display: flex;
+  margin: 0 auto;
+  width: 180px;
+  height: 23px;
+  /* background: rgba(236,236,243,1); */
+  background: #DCE5EC;
+  opacity: 1;
+  border: 1px solid rgba(0,0,0,1);
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  overflow: hidden;
+  width: 180px;
+  height: 23px;
+}
+
+
+#id_isOngoing{
+  margin-left: 20px;
+  background: #DCE5EC;
+  width: 25px;
+  height: 25px;
+  border: 2px solid rgba(0,0,0,1);
+}
+
+#id_phone{
+  display: flex;
+  margin: 0 auto;
+  width: 180px;
+  height: 23px;
+  /* background: rgba(236,236,243,1); */
+  background: #DCE5EC;
+  opacity: 1;
+  border: 1px solid rgba(0,0,0,1);
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  overflow: hidden;
+}
+
 /* Post form container */
 #post-form-container {
   display: flex;
@@ -439,6 +567,79 @@ textarea {
 .post-form {
   display: flex;
   flex-direction: column;
+}
+
+#post-create-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+
+#skill-form-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 340px;
+  height: 350px;
+  /* margin-bottom: 20px; */
+  margin-right: 20px; 
+  margin-left: 20px; 
+  background: #ECECF3;
+  opacity: 1;
+  border: 1px solid rgba(0,0,0,1);
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.skill-form {
+  display: flex;
+  flex-direction: column;
+}
+
+#skill-create-page{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#profile-form-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 340px;
+  height: 240px;
+  /* margin-bottom: 20px; */
+  margin-right: 20px; 
+  margin-left: 20px; 
+  background: #ECECF3;
+  opacity: 1;
+  border: 1px solid rgba(0,0,0,1);
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.post-form{
+  display: flex;
+  flex-direction: column;
+}
+
+#profile-create-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.filter-form{
+  margin-top: 7px;
 }
 
 
