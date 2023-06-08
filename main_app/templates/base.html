@@ -24,7 +24,8 @@
                 </button>
                 <div class="dropdown-content">
                     {% if user.is_authenticated %}
-                    <p>logged in as {{user}}</p>
+                    <p style="font-weight: bold;">{{user}}</p>
+                    <hr>
                     <a href="{% url 'logout' %}">Log Out</a>              
                     <a href="{% url 'skills_create' %}">Add Skill</a>
                     
@@ -47,12 +48,15 @@
         <br><br>
 <!-- </main> -->
 <!-- <br><br> -->
+    <div id="block-sizing">
+
+    
       
       
     {% block content %}
     {% endblock %}
 
-
+    </div>
         
     {% if user.is_authenticated %}
         <footer>

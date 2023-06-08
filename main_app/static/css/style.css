@@ -13,6 +13,17 @@ body {
 }
 
 /* Styles for the main heading */
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s, box-shadow 0.3s;
+}
+
+a:hover {
+  color: #3498db;
+  text-shadow: 0 0 5px #3498db;
+}
+
 
 h1 {
   font-family: 'Courier New', sans-serif;
@@ -693,6 +704,49 @@ label {
   width: 170px;
 }
 
+#block-sizing {
+  margin-bottom: 20px;
+  padding-bottom: 40px;
+}
+
+#post-detail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+}
+
+#post-detail-picture {
+  width: 400px;
+
+}
+
+#post-submit-btn {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+  color: black;
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px;
+  display: flex; 
+  align-items: center;
+  padding: 2px 40px;
+  font-size: 15px;
+  cursor: pointer;
+  border: 1px solid rgba(0,0,0,1);
+  border-radius: 30px;
+  border-top-left-radius: 23px;
+  border-top-right-radius: 23px;
+  border-bottom-left-radius: 23px;
+  border-bottom-right-radius: 23px;
+  background: rgba(27,87,176,1);
+
+}
 
 
 
