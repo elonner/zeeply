@@ -12,6 +12,7 @@ from .models import Skill, Post, Profile, Review
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
+from django.urls import reverse_lazy
 # from .forms import PostForm
 import uuid
 import boto3
@@ -224,6 +225,7 @@ class ProfileCreate(LoginRequiredMixin, CreateView):
 class ProfileUpdate (LoginRequiredMixin, UpdateView):
   model = Profile
   fields = ['phone', 'bio']
+
 
 class UsersDetail(LoginRequiredMixin, DetailView):
     model = User
