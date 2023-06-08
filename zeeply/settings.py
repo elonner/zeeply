@@ -84,14 +84,14 @@ WSGI_APPLICATION = 'zeeply.wsgi.application'
 DB_API_KEY = os.environ['DB_API_KEY']
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'elonner/zeeply',
-        'USER': 'elonner',
-        'PASSWORD': DB_API_KEY,
-        'HOST': 'db.bit.io',
-        'PORT': '5432',
-    }
+  'default': {
+    'ENGINE': 'django.db.backends.postgresql',
+    'NAME': 'zeeply',
+    'USER': 'elilnnr5',
+    'PASSWORD': os.environ['DB_PW'],
+    'HOST': 'ep-young-meadow-980579.us-west-2.aws.neon.tech',
+    'PORT': '5432',
+  }
 }
 
 
