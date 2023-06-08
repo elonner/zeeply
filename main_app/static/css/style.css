@@ -458,6 +458,43 @@ label {
   /* text-align: left; */
 }
 
+#post-create-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+#post_row4 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#save-button {
+  width: 30px;
+}
+
+#save-button:hover {
+  width: 30px;
+  transform: scale(1.20);  
+}
+
+#unsave-button {
+  width: 30px;
+}
+
+#unsave-button:hover {
+  width: 30px;
+  transform: scale(1.20);  
+}
+
+#stars {
+  width: 170px;
+}
+
+
+
+
 
 
 /* Media Queries */
@@ -479,3 +516,5 @@ label {
     
   }
 }
+
+

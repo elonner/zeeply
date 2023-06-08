@@ -49,14 +49,21 @@
                     {% if user not in post.savedBy.all %}
                         <div id="post_row4">
                             <!-- <p>add stars here</p> -->
-                            <img src="/static/images/five_stars.png" alt="five-stars"><br>
-                            <a href="{% url 'posts_save' post.id %}">Save Post</a>
+                            <img id="stars" src="/static/images/five_stars.png" alt="five-stars"><br>
+                            <a href="{% url 'posts_save' post.id %}">
+                                <div id="save-area">
+                                    <img id="save-button"src="/static/images/v2_242.png" alt="save-post">
+                                </div>
+                            </a>
                         </div>
                     {% else %}
                         <div id="post_row4">
                             <!-- <p>add stars here</p> -->
-                            <img src="/static/images/five_stars.png" alt="five-stars"><br>
-                            <a href="{% url 'posts_unsave' post.id %}">Unsave Post</a>
+                            <img id="stars" src="/static/images/five_stars.png" alt="five-stars"><br>
+                            <a href="{% url 'posts_unsave' post.id %}">
+                        
+                                <img id="unsave-button" src="/static/images/saved_image.png" alt="unsave-post">
+                            </a>
                         </div>
                     {% endif %}
                 {% endif %}
