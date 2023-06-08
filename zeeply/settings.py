@@ -89,7 +89,7 @@ DATABASES = {
     'NAME': 'zeeply',
     'USER': os.environ['DB_USER'],
     'PASSWORD': os.environ['DB_PW'],
-    'HOST': os.environ['DATABASE_URL'],
+    'HOST': os.environ['DB_HOST'],
     'PORT': '5432',
   }
 }
@@ -138,3 +138,7 @@ LOGOUT_REDIRECT_URL = '/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Configure Django App for Heroku.
+import django_on_heroku
+django_on_heroku.settings(locals())
