@@ -25,6 +25,19 @@ from django.urls import reverse
 class HomeFeedList(ListView):
     model = Post
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        skill_list = Skill.objects.all()
+        context['skill_list'] = skill_list
+        return context
+    
+    def get_queryset(self):
+        if bool(self.request.GET):
+            skill_name = self.request.GET.get('filter')
+            filter_skill = Skill.objects.filter(skill=skill_name)
+            return Post.objects.filter(skill__in=filter_skill)
+        return Post.objects.all()
+            
 
 class FollowingPosts(LoginRequiredMixin, ListView):
     model = Post
@@ -100,6 +113,10 @@ class PostCreate(LoginRequiredMixin, CreateView):
     form_class = PostForm
     # success_url = 'posts/{pk}/'
 
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class=form_class)
+        form.fields['skill'].queryset = Skill.objects.filter(user=self.request.user)
+        return form
 
     def form_valid(self, form):
         form.instance.creator = self.request.user
@@ -235,9 +252,16 @@ class UsersDetail(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         profile = Profile.objects.get(user=self.kwargs.get('pk'))
-        post_list = Post.objects.filter(creator=self.kwargs.get('pk'))
+        skill_list = Skill.objects.filter(user=self.kwargs.get('pk'))
+        if bool(self.request.GET):
+            skill_name = self.request.GET.get('filter')
+            filter_skill = Skill.objects.filter(skill=skill_name).get(user=self.kwargs.get('pk'))
+            post_list = Post.objects.filter(skill=filter_skill).filter(creator=self.kwargs.get('pk'))
+        else:
+            post_list = Post.objects.filter(creator=self.kwargs.get('pk'))
         context['profile'] = profile
         context['post_list'] = post_list
+        context['skill_list'] = skill_list
         return context
 
 
