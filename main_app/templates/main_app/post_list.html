@@ -12,9 +12,9 @@
     </form>
 {% else %}
     <div class="following-explore">
-    <a id="following-link" href="{% url 'following_posts' %}">Following</a>
-    |
-    <span id="explore-link">Explore</span>
+        <a id="following-link" href="{% url 'following_posts' %}">Following</a>
+        |
+        <span id="explore-link">Explore</span>
     </div>
     <form action="{% url 'home_feed_list' %}">
         <select name="filter" required>
