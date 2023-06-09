@@ -16,7 +16,7 @@
 <br>
 <form action="{% url 'users_detail' curr_user.id %}">
     <select class="filter-search-input" name="filter" required>
-        <option value=""></option>
+        <option value="">Skills</option>
         {% for skill in skill_list %}
             <option value="{{skill.skill}}">{{skill.skill}}</option>
         {% endfor %}

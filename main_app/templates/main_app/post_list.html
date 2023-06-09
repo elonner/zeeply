@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% block content %}
-<div id="post-list-page">
 {% if is_following_page %}
     <span> Following </span>
     |
@@ -28,7 +27,7 @@
 {% elif is_saved_page %}
     <form action="{% url 'saved_list' %}">
         <select class="filter-search-input" name="filter" required>
-            <option value="Skills" ></option>
+            <option value="">Skills</option>
             {% for skill in skill_list %}
                 <option value="{{skill.skill}}">{{skill.skill}}</option>
             {% endfor %}
@@ -81,7 +80,6 @@
         {% endif %}
     {% endfor %}
 </ul>
-</div>
 </div>
 
 
