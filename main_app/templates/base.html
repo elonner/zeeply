@@ -23,14 +23,16 @@
                     <span class="icon">&#x2699;</span> <!-- Replace with your login icon class or HTML -->
                 </button>
                 <div class="dropdown-content">
-                    {% if user.is_authenticated %}
-                    <p style="font-weight: bold;">{{user}}</p>
-                    <hr>
-                    <a href="{% url 'logout' %}">Log Out</a>              
-                    <a href="{% url 'skills_create' %}">Add Skill</a>
-                    
-                    <a href="{% url 'profiles_create' %}">Add Profile</a>
-                    
+                    {% if user.is_authenticated and logged_in_profile %}
+                        <p style="font-weight: bold;">{{user}}</p>
+                        <hr>
+                        <a href="{% url 'logout' %}">Log Out</a>              
+                        <a href="{% url 'skills_create' %}">Add Skill</a>
+                    {% elif user.is_authenticated %}
+                        <p style="font-weight: bold;">{{user}}</p>
+                        <hr>
+                        <a href="{% url 'logout' %}">Log Out</a>              
+                        <a href="{% url 'profiles_create' %}">Add Profile</a>
                     {% else %}
                     <a href="{% url 'login' %}">Log In</a>
             
@@ -58,7 +60,7 @@
 
     </div>
         
-    {% if user.is_authenticated %}
+    {% if user.is_authenticated and logged_in_profile %}
         <footer>
             <a href="{% url 'home_feed_list' %}">
                 <span class="icon">&#127968;</span>
