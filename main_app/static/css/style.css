@@ -248,11 +248,12 @@ h1 {
 
 
 .filter-search-input {
+  text-align: center;
   margin-top: 10px;
   margin-left: 20px;
   margin-bottom: -15px;
-  width: 100px;
-  height: 23px;
+  width: 110px;
+  height: 25px;
   background: rgba(236,236,243,1);
   opacity: 1;
   border: 1px solid rgba(0,0,0,1);
@@ -504,7 +505,7 @@ h2 {
 }
 
 .btn:hover{
-  background-color: #45a049;
+  background-color: #3498db;
 }
 
 #edit-btn {

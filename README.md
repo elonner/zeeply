@@ -1,4 +1,4 @@
-# 🌈 zeeply - Skill-Sharing App
+# 🌈 Zeeply - Skill-Sharing App
 
 Welcome to Zeeply, a skill-sharing app that allows users to post blogs, videos, and audio about their niche areas of expertise. Zeeply aims to provide a platform where individuals can share their knowledge and help others acquire skillsets that may be difficult to research independently. This README will guide you through the features, technical requirements, and tools used in building Zeeply.
 
@@ -63,7 +63,7 @@ Zeeply was developed utilizing the following tools:
 
 To get started with Zeeply, follow these steps:
 
-Access Zeeply in your web browser at 
+Access Zeeply in your web browser at: 
 
 ## Future Enhancements
 
