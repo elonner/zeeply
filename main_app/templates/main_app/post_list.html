@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
-
+<div id="post-list-page">
 {% if is_following_page %}
-    <span>Following</span>
+    <span> Following </span>
     |
-    <a href="{% url 'home_feed_list' %}">Explore</a>
+    <a href="{% url 'home_feed_list' %}"> Explore </a>
 {% elif is_explore_page %}
     <div class="following-explore">
-        <a id="following-link" href="{% url 'following_posts' %}">Following</a>
+        <a id="following-link" href="{% url 'following_posts' %}">Following </a>
         |
-        <span id="explore-link">Explore</span>
+        <span id="explore-link">  Explore </span>
     </div>
     <form class="filter-form" action="{% url 'home_feed_list' %}">
         <select class="filter-search-input" name="filter" required>
@@ -81,6 +81,7 @@
         {% endif %}
     {% endfor %}
 </ul>
+</div>
 </div>
 
 
