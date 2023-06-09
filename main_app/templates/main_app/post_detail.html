@@ -5,7 +5,7 @@
     <div id="block-1">
       <h1>{{ post.title }}</h1>
       <a href="{% url 'users_detail' post.creator.id %}">
-          <p>by @{{ post.creator.username }}</p>
+          <p id="post-detail-username">By @{{ post.creator.username }}</p>
       </a>
     </div>
 
@@ -14,7 +14,7 @@
     {% for file in files %}
     {% if file.is_photo %}
       <div id="image-container">
-        <img  id="post-detail-picture" src="{{ file.url }}" alt="{{ file }}" width="400">
+        <img id="square-image"  id="post-detail-picture" src="{{ file.url }}" alt="{{ file }}" width="400">
       </div>
       {% endif %}
     {% endfor %}
@@ -29,14 +29,14 @@
     {% endfor %}
 
     <div id="block-2">
-      <h3>{{ post.header }}</h3>
-      <p>{{ post.contentBlock }}</p>
+      <h3 id="post-detail-header">{{ post.header }}</h3>
+      <p id="post-content-block">{{ post.contentBlock }}</p>
     </div>
 
     <div id="block-3">
       
         <button id="post-submit-btn">
-          <a href="{% url 'reviews_create' post.id %}">Add Review</a>
+          <a  href="{% url 'reviews_create' post.id %}">Add Review</a>
         </button>
     </div>
 
@@ -44,7 +44,7 @@
       <table id="review-table">
         <thead>
           <tr>
-            <th>Review</th>
+            <th id="review-button">Review</th>
           </tr>
         </thead>
         <tbody>
