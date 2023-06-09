@@ -1,12 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
   <div id="post-detail">
-    <h1>{{ post.title }}</h1>
-    <a href="{% url 'users_detail' post.creator.id %}">
-        <p>by @{{ post.creator.username }}</p>
-    </a>
-    <h3>{{ post.header }}</h3>
-    <p>{{ post.contentBlock }}</p>
+
+    <div id="block-1">
+      <h1>{{ post.title }}</h1>
+      <a href="{% url 'users_detail' post.creator.id %}">
+          <p>by @{{ post.creator.username }}</p>
+      </a>
+    </div>
+
+
 
     {% for file in files %}
     {% if file.is_photo %}
@@ -25,14 +28,44 @@
     {% endif %}
     {% endfor %}
 
-    <h2>Reviews</h2>
-    <button id="post-submit-btn">
-      <a href="{% url 'reviews_create' post.id %}">Leave Review</a>
-    </button>
+    <div id="block-2">
+      <h3>{{ post.header }}</h3>
+      <p>{{ post.contentBlock }}</p>
+    </div>
+
+    <div id="block-3">
+      
+        <button id="post-submit-btn">
+          <a href="{% url 'reviews_create' post.id %}">Add Review</a>
+        </button>
+    </div>
+
+    <div id="block-4">
+      <table id="review-table">
+        <thead>
+          <tr>
+            <th>Review</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for review in reviews %}
+          <tr>
+            <td class="review-block">
+              <p class="creator">By: {{ review.creator }}</p>
+              <p class="rating">{{ review.rating }}</p>
+              <p class="content">Review: {{ review.content }}</p>
+            </td>
+          </tr>
+          <tr class="spacer-row">
+            <td></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
     
-    {% for review in reviews %}
-      <p>{{ review }}</p>
-    {% endfor %}
+    
+    
 </div>
 
 {% endblock %}
