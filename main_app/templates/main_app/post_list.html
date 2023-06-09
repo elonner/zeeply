@@ -13,7 +13,7 @@
     </div>
     <form class="filter-form" action="{% url 'home_feed_list' %}">
         <select class="filter-search-input" name="filter" required>
-            <option value=""></option>
+            <option value="">Skills</option>
             {% for skill in skill_list %}
                 <option value="{{skill.skill}}">{{skill.skill}}</option>
             {% endfor %}
@@ -28,7 +28,7 @@
 {% elif is_saved_page %}
     <form action="{% url 'saved_list' %}">
         <select class="filter-search-input" name="filter" required>
-            <option value=""></option>
+            <option value="Skills" ></option>
             {% for skill in skill_list %}
                 <option value="{{skill.skill}}">{{skill.skill}}</option>
             {% endfor %}
