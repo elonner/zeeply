@@ -857,6 +857,8 @@ label {
   /* text-align: left; */
 }
 
+/* CSS for Posts */
+
 #post-create-page {
   display: flex;
   align-items: center;
@@ -998,6 +1000,24 @@ label {
   object-fit: cover;
   width: 100%;
   height: 100%;
+}
+
+#post-confirm-delete {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#h4-post-confirm-delete {
+  font-family: 'Courier New', sans-serif;
+  font-size: 20px;
+  margin: 20px;
+}
+
+#post-cancel-delete{
+  font-family: 'Courier New', sans-serif;
+  font-size: 20px;
+  margin: 20px;
 }
 
 

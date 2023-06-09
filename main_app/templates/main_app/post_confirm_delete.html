@@ -1,13 +1,17 @@
+<div id="post-confirm-delete">
+
 {% extends 'base.html' %}
 
 {% block content %}
   <h1>Delete Post</h1>
 
-  <h4>Are you sure you want to delete {{ object.post }}?</h4>
+  <h4 id="h4-post-confirm-delete">Are you sure you want to delete {{ object.post }}?</h4>
 
   <form action="" method="POST">
     {% csrf_token %}
     <input type="submit" value="Yes" class="btn red">
-    <a href="{% url 'users_detail' user.id %}">Cancel</a>
+    <a id="post-cancel-delete" href="{% url 'users_detail' user.id %}">Cancel</a>
   </form>
+</div>
+
 {% endblock %} 
